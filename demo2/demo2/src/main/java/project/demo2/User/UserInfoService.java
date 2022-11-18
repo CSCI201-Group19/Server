@@ -18,8 +18,8 @@ public class UserInfoService {
         return uiRepository.findAll();
     }
     public Boolean UserLoginVerification(String name, String password){
-        Optional<UserInfo> temp = uiRepository.findUserInfoByName(name);
-        if(temp.isPresent()&&temp.get().getPassword().equals(password)){
+        Optional<String> temp = uiRepository.findUserPasswordByName(name);
+        if(temp.isPresent()&&temp.get().equals(password)){
             return true;
         }
         return false;
