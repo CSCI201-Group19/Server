@@ -24,4 +24,13 @@ public class UserInfoService {
         }
         return false;
     }
+    public Boolean UserSignUp(UserInfo ui){
+        Optional<String> temp = uiRepository.findEmail(ui.getEmail());
+        if(temp.isPresent()){
+            return false;
+        }
+        uiRepository.save(ui);
+        return true;
+
+    }
 }

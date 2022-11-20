@@ -25,5 +25,9 @@ public class UserInfoController {
     public Boolean UserLoginVerification(@RequestParam String userName, String password){
         return uiService.UserLoginVerification(userName,password);
     }
+    @PostMapping(path = "/signup")
+    public Boolean UserSignUp(@RequestBody UserInfo ui){
+        return uiService.UserSignUp(ui);
+    }
 
 }
