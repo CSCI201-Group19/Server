@@ -2,11 +2,9 @@ package project.demo2.Event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,19 +26,94 @@ public class EventInfoService {
         return eiRepository.findEventInfoByType(type);
     }
     public void addNewEvent(EventInfo ei){
-        Optional<EventInfo> eio = eiRepository.findEventInfoByName(ei.getName());
+        Optional<EventInfo> eio = eiRepository.findEventInfoById(ei.getId());
         if(eio.isPresent()){
             throw new IllegalStateException("Event existed");
         }
         eiRepository.save(ei);
 
     }
-    public void deleteEvent(Long id){
+    public void deleteEvent(Long id, Long HostID){
         boolean exists = eiRepository.existsById(id);
         if(!exists){
             throw new IllegalStateException("Event with id "+ id + " does not exist.");
         }
-        eiRepository.deleteById(id);
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id == HostID) eiRepository.deleteById(id);
+        else throw new IllegalStateException("Not allowed to modify the event");
+    }
+
+    public void updateEventName(Long id, Long HostID, String name){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setName(name);
+        eiRepository.save(ei.get(0));
+    }
+
+    public void updateEventLocation(Long id, Long HostID, String loc){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setLocation(loc);
+        eiRepository.save(ei.get(0));
+    }
+
+    public void updateEventType(Long id, Long HostID, int type){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setType(type);
+        eiRepository.save(ei.get(0));
+    }
+
+    public void updateEventDate(Long id, Long HostID, LocalDate date){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setDate(date);
+        eiRepository.save(ei.get(0));
+    }
+
+    public void updateEventTime(Long id, Long HostID, LocalTime time){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setTime(time);
+        eiRepository.save(ei.get(0));
+    }
+
+    public void updateEventCap(Long id, Long HostID, int cap){
+        boolean exists = eiRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+        }
+        List<EventInfo> ei = eiRepository.getEventInfoById(id);
+        Long host_id = ei.get(0).getHostID();
+        if(host_id != HostID)throw new IllegalStateException("Not allowed to modify the event");
+        ei.get(0).setCapacity(cap);
+        eiRepository.save(ei.get(0));
     }
 }
 
