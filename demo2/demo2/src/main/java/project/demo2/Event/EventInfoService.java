@@ -25,14 +25,15 @@ public class EventInfoService {
     public List<EventInfo> getEventInfoByType(int type){
         return eiRepository.findEventInfoByType(type);
     }
-    public void addNewEvent(EventInfo ei){
+    public void addNewEvent(EventInfo ei, Long userID){
         Optional<EventInfo> eio = eiRepository.findEventInfoById(ei.getId());
         if(eio.isPresent()){
             throw new IllegalStateException("Event existed");
         }
+        ei.setHostId(userID);
         eiRepository.save(ei);
-
     }
+
     public void deleteEvent(Long id, Long HostID){
         boolean exists = eiRepository.existsById(id);
         if(!exists){
