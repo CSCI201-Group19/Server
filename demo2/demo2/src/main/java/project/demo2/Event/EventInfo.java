@@ -21,28 +21,20 @@ public class EventInfo {
     private LocalDate date;
     private LocalTime time;
     private int capacity;
+    private Long hostId;
 
 
     public EventInfo() {
     }
 
-    public EventInfo(Long id, String name, String location, String category, LocalDate date, LocalTime time, int capacity) {
-        this.id = id;
+    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity, Long hostId) {
         this.name = name;
         this.location = location;
         this.category = category;
         this.date = date;
         this.time = time;
         this.capacity = capacity;
-    }
-
-    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity) {
-        this.name = name;
-        this.location = location;
-        this.category = category;
-        this.date = date;
-        this.time = time;
-        this.capacity = capacity;
+        this.hostId = hostId;
     }
 
     public Long getId() {
@@ -101,6 +93,14 @@ public class EventInfo {
         this.capacity = capacity;
     }
 
+    public Long getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(Long hostId) {
+        this.hostId = hostId;
+    }
+
     @Override
     public String toString() {
         return "EventInfo{" +
@@ -111,6 +111,7 @@ public class EventInfo {
                 ", date=" + date +
                 ", time=" + time +
                 ", capacity=" + capacity +
+                ", hostId=" + hostId +
                 '}';
     }
 }

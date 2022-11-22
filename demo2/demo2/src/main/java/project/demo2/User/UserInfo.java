@@ -1,6 +1,9 @@
 package project.demo2.User;
 
+import project.demo2.Event.EventInfo;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -19,6 +22,7 @@ public class UserInfo {
     private String password;
     private String firstName;
     private String lastName;
+
 
     public UserInfo() {
 

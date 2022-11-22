@@ -11,14 +11,17 @@ import java.util.Optional;
 public interface EventInfoRepository
         extends JpaRepository<EventInfo,Long> {
 
+    @Query("select ei from EventInfo ei where ei.id = ?1")
+    Optional<EventInfo> findEventInfoById(Long event_id);
+
     @Query("select ei from EventInfo ei where ei.name = ?1")
-    Optional<EventInfo> findEventInfoByName(String name);
+    List<EventInfo> findEventInfoByName(String name);
 
     @Query("select ei from EventInfo ei where ei.category = ?1")
-    List<EventInfo> findEventInfoByCategory(int category);
+    List<EventInfo> findEventInfoByCategory(String category);
 
-    @Query("select ei from EventInfo ei where ei.type = ?1")
-    List<EventInfo> findEventInfoByType(int type);
+    @Query("select ei from EventInfo ei where ei.hostId = ?1")
+    List<EventInfo> findEventInfoByHostID(Long user_id);
 
 
 }
