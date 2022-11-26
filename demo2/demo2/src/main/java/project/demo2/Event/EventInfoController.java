@@ -33,11 +33,12 @@ public class EventInfoController {
 
 
     @PostMapping
-    public Boolean addNewEvent(@RequestBody  EventInfo ei){
-        es.addNewEvent(ei);
+    public Boolean addNewEvent(@RequestBody  EventInfo ei, long hostID){
+        es.addNewEvent(ei, hostID);
         return true;
-
     }
+
+    
     @DeleteMapping(path = "{EventInfoId}")
     public void deleteEvent(@PathVariable("EventInfoId") Long id){
         es.deleteEvent(id);
