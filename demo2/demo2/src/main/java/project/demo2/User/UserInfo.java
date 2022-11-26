@@ -1,7 +1,9 @@
 package project.demo2.User;
 
+import project.demo2.Event.EventInfo;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -18,86 +20,68 @@ public class UserInfo {
     private String userName;
     private String email;
     private String password;
-    private String major;
-    private String schoolYear;
-    private String Interests;
+    private String firstName;
+    private String lastName;
+
 
     public UserInfo() {
+
     }
 
-    public UserInfo(Long id, String userName, String email, String password, String major, String schoolYear, String interests) {
-        this.id = id;
+    public UserInfo(String userName, String email, String password, String firstName, String lastName) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.major = major;
-        this.schoolYear = schoolYear;
-        Interests = interests;
-    }
-
-    public UserInfo(String userName, String email, String password, String major, String schoolYear, String interests) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.major = major;
-        this.schoolYear = schoolYear;
-        Interests = interests;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public String getSchoolYear() {
-        return schoolYear;
-    }
-
-    public String getInterests() {
-        return Interests;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSchoolYear(String schoolYear) {
-        this.schoolYear = schoolYear;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setInterests(String interests) {
-        Interests = interests;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -107,9 +91,8 @@ public class UserInfo {
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", major='" + major + '\'' +
-                ", schoolYear='" + schoolYear + '\'' +
-                ", Interests='" + Interests + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

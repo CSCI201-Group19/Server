@@ -19,8 +19,10 @@ public class EventInfoController {
     public List<EventInfo> getEventInfo(){
         return es.getEventInfo();
     }
+
+    //TODO: Update GetMapping in correspondence to EventInfoService.java
     @GetMapping(path = "Category/{EventInfoCategory}")
-    public List<EventInfo> getEventInfoByCategory(@PathVariable("EventInfoCategory") int category){
+    public List<EventInfo> getEventInfoByCategory(@PathVariable("EventInfoCategory") String category){
         return es.getEventInfoByCategory(category);
     }
     @GetMapping(path = "{EventInfoType}")
