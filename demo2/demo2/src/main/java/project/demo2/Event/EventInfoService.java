@@ -32,14 +32,15 @@ public class EventInfoService {
     public Optional<EventInfo> getEventInfoById(Long event_id) { return eiRepository.findEventInfoById(event_id); }
     public List<EventInfo> getEventInfoByCategory(String category){ return eiRepository.findEventInfoByCategory(category); }
 
-    public void addNewEvent(EventInfo ei, long hostID){
+    //public void addNewEvent(EventInfo ei, Long hostID){
+    public void addNewEvent(EventInfo ei){
         Optional<EventInfo> eio = eiRepository.findEventInfoById(ei.getId());
         if(eio.isPresent()){
             throw new IllegalStateException("Event existed");
         }
-        ei.setHostId(hostID);
-        eiRepository.save(ei);
+        //ei.setHostId(hostID); //hostID being set through EventInfo constructor?
 
+        eiRepository.save(ei);
     }
     public void deleteEvent(Long id, Long HostID){
         Optional<EventInfo> ei = eiRepository.findEventInfoById(id);

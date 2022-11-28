@@ -32,9 +32,11 @@ public class EventInfoController {
 
 
 
-    @PostMapping
-    public Boolean addNewEvent(@RequestBody  EventInfo ei, long hostID){
-        es.addNewEvent(ei, hostID);
+    @PostMapping(path="/CreateEvent")
+    //public Boolean addNewEvent(@RequestBody  EventInfo ei, Long hostID){
+        //es.addNewEvent(ei, hostID);
+    public Boolean addNewEvent(@RequestBody  EventInfo ei){
+    es.addNewEvent(ei);
         return true;
     }
 

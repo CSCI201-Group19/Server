@@ -34,8 +34,13 @@ public class UserInfoService {
 
     }
 
-    public Optional<UserInfo> getUserInfoById(long userId)
+    public Optional<UserInfo> getUserInfoById(Long userId)
     {
+        Optional<UserInfo> temp = uiRepository.findUserInfoById(userId);
+        if(!temp.isPresent())
+        {
+            throw new IllegalStateException("No user with ID " + userId + " found.");
+        }
         return uiRepository.findUserInfoById(userId);
     }
 }
