@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class LoginPage {
     @GetMapping(path = "/Login")
-    public String hello(){
-        return "index";
+    public String hello() {
+        return "login-page";
     }
 }
