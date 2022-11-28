@@ -5,7 +5,11 @@
     <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
     <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <link rel="stylesheet" type="text/css" href="/login-page.css" />
@@ -52,69 +56,73 @@
           borderRadius: 4,
         },
       };
+      const handleSubmit = async function (event) {
+        alert("hello");
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        const res = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/login?userName=" +
+            username +
+            "&password=" +
+            password
+        );
+        let obj = await res.text();
+        if (obj == "false") {
+          alert("Incorrect Username or Password");
+        } else {
+          window.localStorage.setItem("username", username);
+          window.localStorage.setItem("password", password);
+        }
+      };
     </script>
-    <input type="hidden" id="anPageName" name="page" value="login-page" />
+
     <div class="container-center-horizontal">
-      <form class="login-page screen" name="form1" action="form1" method="post">
-        <div class="usc-event-organizer montserrat-bold-white-48px">USC Event Organizer</div>
+      <div class="login-page screen" name="form1" action="form1" method="post">
+        <div class="usc-event-organizer montserrat-bold-white-48px">
+          USC Event Organizer
+        </div>
         <div class="overlap-group-2 candal-normal-white-24px">
-          <div class="username">Username</div>
+          <label class="username" for="username">Username</label>
           <div class="overlap-group">
             <input
               class="enter-username montserrat-normal-black-21px"
-              name="enterusername"
+              name="username"
+              id="username"
               placeholder="Enter username"
               type="text"
               required
             />
           </div>
-          <div class="password">Password</div>
+          <label class="password" for="password">Password</label>
           <div class="overlap-group">
             <input
               class="enter-password montserrat-normal-black-21px"
-              name="enterpassword"
+              name="password"
+              id="password"
               placeholder="Enter password"
               type="password"
               required
             />
           </div>
-          <a href="javascript:SubmitForm('form1')" class="align-self-flex-center"
-            ><img class="vector" src="img/vector-13@2x.png" alt="Vector" />
-          </a>
+          <button onclick="handleSubmit()">
+            <img class="vector" src="img/vector-13@2x.png" alt="Vector" />
+          </button>
         </div>
         <div class="overlap-group-container">
           <div class="overlap-group-1">
             <a href="register-page.html"> <div class="rectangle-4"></div></a>
-            <div class="place valign-text-middle candal-normal-white-24px">Register</div>
+            <div class="place valign-text-middle candal-normal-white-24px">
+              Register
+            </div>
           </div>
           <div class="overlap-group-1">
             <a href="guest-page.html"> <div class="rectangle-4"></div></a>
-            <div class="guest-page valign-text-middle candal-normal-white-24px">Guest Page</div>
+            <div class="guest-page valign-text-middle candal-normal-white-24px">
+              Guest Page
+            </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
-    <script>
-      /* Copyright (c) 2016 Tobias Buschor https://goo.gl/gl0mbf | MIT License https://goo.gl/HgajeK */
-
-      if (!HTMLFormElement.prototype.reportValidity) {
-        HTMLFormElement.prototype.reportValidity = function () {
-          if (this.checkValidity()) return true;
-          var btn = document.createElement("button");
-          this.appendChild(btn);
-          btn.click();
-          this.removeChild(btn);
-          return false;
-        };
-      }
-
-      function SubmitForm(form_name) {
-        var form = document.getElementsByName(form_name)[0];
-        if (form.reportValidity()) {
-          form.submit();
-          if (window.submitted) window.submitted();
-        }
-      }
-    </script>
   </body>
 </html>
