@@ -36,7 +36,7 @@ public class EventInfoController {
     //public Boolean addNewEvent(@RequestBody  EventInfo ei, Long hostID){
         //es.addNewEvent(ei, hostID);
     public Boolean addNewEvent(@RequestBody  EventInfo ei){
-    es.addNewEvent(ei);
+        es.addNewEvent(ei);
         return true;
     }
 
