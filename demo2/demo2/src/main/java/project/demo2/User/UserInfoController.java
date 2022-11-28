@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
@@ -28,6 +29,12 @@ public class UserInfoController {
     @PostMapping(path = "/signup")
     public Boolean UserSignUp(@RequestBody UserInfo ui){
         return uiService.UserSignUp(ui);
+    }
+
+    @GetMapping(path = "/userId={userId}")
+    public Optional<UserInfo> getUserInfoById(@PathVariable("userId") long userId)
+    {
+        return uiService.getUserInfoById(userId);
     }
 
 }

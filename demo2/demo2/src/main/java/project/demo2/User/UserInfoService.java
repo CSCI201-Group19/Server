@@ -33,4 +33,9 @@ public class UserInfoService {
         return true;
 
     }
+
+    public Optional<UserInfo> getUserInfoById(long userId)
+    {
+        return uiRepository.findUserInfoById(userId);
+    }
 }
