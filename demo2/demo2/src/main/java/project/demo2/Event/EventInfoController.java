@@ -25,10 +25,10 @@ public class EventInfoController {
     public List<EventInfo> getEventInfoByCategory(@PathVariable("EventInfoCategory") String category){
         return es.getEventInfoByCategory(category);
     }
-    @GetMapping(path = "{EventInfoType}")
-    public List<EventInfo> getEventInfoByType(@PathVariable("EventInfoType")int type){
-        return es.getEventInfoByType(type);
-    }
+//    @GetMapping(path = "{EventInfoType}")
+//    public List<EventInfo> getEventInfoByType(@PathVariable("EventInfoType")int type){
+//        return es.getEventInfoByType(type);
+//    }
 
 
 
@@ -39,9 +39,9 @@ public class EventInfoController {
     }
 
     
-    @DeleteMapping(path = "{EventInfoId}")
-    public void deleteEvent(@PathVariable("EventInfoId") Long id){
-        es.deleteEvent(id);
+    @DeleteMapping(path = "{EventInfoId}/{HostID}")
+    public void deleteEvent(@PathVariable("EventInfoId") Long id,@PathVariable("HostID") Long hostId){
+        es.deleteEvent(id,hostId);
     }
 
 }

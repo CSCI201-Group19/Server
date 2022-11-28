@@ -11,10 +11,8 @@ public class UserInfoConfig {
     @Bean
     CommandLineRunner commandLineRunner2(UserInfoRepository repository){
         return args ->{
-            UserInfo alex = new UserInfo("Alex", "alex123@usc.edu","alex1234alex",
-                    "Computer Science","Freshman", "Skiing");
-            UserInfo jason = new UserInfo("Jason", "jason456@usc.edu","jason",
-                    "Business Administration","Junior", "Dancing, Traveling");
+            UserInfo alex = new UserInfo("Alex", "alex123@usc.edu","alex1234alex", "Alex","xyz");
+            UserInfo jason = new UserInfo("Jason", "jason456@usc.edu","jason1234","jason","abc");
             repository.saveAll(List.of(alex,jason));
         };
 
