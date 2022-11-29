@@ -8,6 +8,7 @@ import project.demo2.Event.EventInfo;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
@@ -33,6 +34,8 @@ public class UserInfoController {
         return uiService.UserSignUp(ui);
     }
 
+   
+
     @GetMapping(path = "/fetchProfile")
     public UserInfo fetchProfile (@RequestParam String userName){
         return uiService.UserProfile(userName);
@@ -41,6 +44,7 @@ public class UserInfoController {
     @GetMapping(path = "/fetchEventByDateUser")
     public List<EventInfo> fetchEvent(@RequestParam LocalDate date, Long id){
         return uiService.UserEvents(date, id);
+
     }
 
 }
