@@ -2,17 +2,24 @@ package project.demo2.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.demo2.Event.EventInfo;
+import project.demo2.Event.EventInfoRepository;
+import project.demo2.Event.EventInfoService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserInfoService {
     private final UserInfoRepository uiRepository;
+    private final EventInfoRepository eventRepository;
 
     @Autowired
-    public UserInfoService (UserInfoRepository uiRepository){
+    public UserInfoService (UserInfoRepository uiRepository, EventInfoRepository es){
         this.uiRepository = uiRepository;
+        this.eventRepository = es;
     }
     public List<UserInfo> getUserInfo(){
         return uiRepository.findAll();
@@ -34,13 +41,23 @@ public class UserInfoService {
 
     }
 
-    public Optional<UserInfo> getUserInfoById(Long userId)
-    {
-        Optional<UserInfo> temp = uiRepository.findUserInfoById(userId);
-        if(!temp.isPresent())
-        {
-            throw new IllegalStateException("No user with ID " + userId + " found.");
+    public UserInfo UserProfile(String userName) {
+        Optional<UserInfo> temp = uiRepository.findUserInfoByName(userName);
+        if(temp.isPresent()){
+           return uiRepository.findUserInfoByName(userName).get();
         }
-        return uiRepository.findUserInfoById(userId);
+        return null;
+    }
+
+    public List<EventInfo> UserEvents(LocalDate date, Long id) {
+        List<EventInfo> temp = eventRepository.findEventInfoByHostID(id);
+        List<EventInfo> returnV = new ArrayList<EventInfo>();
+        for(int i=1; i<temp.size();i++){
+            if(temp.get(i).getDate().equals(date))
+                returnV.add(temp.get(i));
+        }
+        return returnV;
+
+
     }
 }

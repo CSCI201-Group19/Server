@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
+    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" type="text/css" href="/calendar-page.css" />
+    <script src="https://animaapp.s3.amazonaws.com/widgets/vendors/63357ca5606e9507a0e38848/vendors.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="/globals.css" />
+  </head>
+  <body style="margin: 0">
+    <script>
+      window.theme = {
+        primaryColor: "#1890ff",
+        secondaryColor: "#1890ff",
+        successColor: "#52c41a",
+        warningColor: "#faad14",
+        errorColor: "#f5222d",
+      };
+      window.globalTheme = {
+        palette: {
+          primary: {
+            main: "#1976d2",
+          },
+          secondary: {
+            main: "#9c27b0",
+          },
+          error: {
+            main: "#d32f2f",
+          },
+          warning: {
+            main: "#ed6c02",
+          },
+          info: {
+            main: "#0288d1",
+          },
+          success: {
+            main: "#2e7d32",
+          },
+          text: {
+            primary: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontSize: 14,
+        },
+        shape: {
+          borderRadius: 4,
+        },
+      };
+    </script>
+    <input type="hidden" id="anPageName" name="page" value="calendar-page" />
+    <div class="container-center-horizontal">
+      <div class="calendar-page screen">
+        <div class="overlap-group">
+          <div class="flex-row">
+            <div class="flex-col">
+              <div class="your-february-plans valign-text-middle">
+                Your February Plans
+              </div>
+              <div class="date-picker">
+                <script>
+                  // prettier-ignore
+                  (function(run, require) {
+          var exports = {}
+
+          run(
+            {"label":"Select a day","placeholder":"","description":"","error":"","disabled":false,"required":false,"multiline":false,"size":"md","iconName":"IconCalendar","iconWidth":30,"variant":"default","width":"300px","id":"63514b86b7ecf0a90f5da160","widgetName":"Date Picker","widgetCategory":"63357ca5606e9507a0e38848","widgetCategoryName":"Mantine UI","source_type":"react","custom_css":"","useFigmaLayers":false,"version":1,"storyCode":"<MantineDates.DatePicker\r\n\t\t\terror=\"\"\r\n\t\t\tsize=\"md\"\r\n\t\t\tvalue={value}\r\n\t\t\tplaceholder=\"\"\r\n\t\t\tdescription=\"\"\r\n\t\t\ticonWidth={30}\r\n\t\t\tdisabled={false}\r\n\t\t\trequired={false}\r\n\t\t\tmultiline={false}\r\n\t\t\tvariant=\"default\"\r\n\t\t\tonChange={setValue}\r\n\t\t\tlabel=\"Select a day\"\r\n\t\t\tstyle={{ width: \"300px\" }}\r\n\t\t\ticon={<TablerIcons.IconCalendar />}\r\n\t\t\t/>","variableDeclarationCode":"const [value, setValue] = React.useState();"},
+            exports,
+            { exports: exports },
+            function require(name) {
+              if(typeof __anima_widget_modules === 'object') {
+                for(const module of __anima_widget_modules) {
+                  if(module.id === "63357ca5606e9507a0e38848" && module.name === name) {
+                    return module.exports
+                  }
+                }
+              }
+
+              // Turn module names into capitalized variable names:
+              // react => React
+              // react-dom => ReactDom
+              name = name
+                  .replace(/(^|\/|-)(\S)/g, (s) => s.toUpperCase())
+                  .replace("@", "")
+                  .replace("/", "")
+                  .replace("-", "")
+              name = name.charAt(0).toUpperCase() + name.slice(1)
+
+              if(window[name]) {
+                return window[name]
+              } else {
+                throw new Error('Module not found: ' + name)
+              }
+            }
+          )
+      })(
+          function run(__anima_params__, exports, module, require) {
+              "use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var MantineCore = _interopRequireWildcard(require("@mantine/core"));
+
+var MantineHooks = _interopRequireWildcard(require("@mantine/hooks"));
+
+var EmotionReact = _interopRequireWildcard(require("@emotion/react"));
+
+var MantineDates = _interopRequireWildcard(require("@mantine/dates"));
+
+var TablerIcons = _interopRequireWildcard(require("@tabler/icons"));
+
+var Dayjs = _interopRequireWildcard(require("dayjs"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const Example = args => {
+  const [value, setValue] = _react.default.useState();
+
+  return /*#__PURE__*/_react.default.createElement(MantineDates.DatePicker, {
+    error: "",
+    size: "md",
+    value: value,
+    placeholder: "",
+    description: "",
+    iconWidth: 30,
+    disabled: false,
+    required: false,
+    multiline: false,
+    variant: "default",
+    onChange: setValue,
+    label: "Select a day",
+    style: {
+      width: "300px"
+    },
+    icon: /*#__PURE__*/_react.default.createElement(TablerIcons.IconCalendar, null)
+  });
+};
+
+const args = __anima_params__;
+
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(Example, args), document.querySelector(".date-picker"));
+          }
+      )
+                </script>
+              </div>
+            </div>
+            <div class="frame-15">
+              <div class="place candal-normal-white-36px">Date</div>
+              <div class="users-event">
+                <div class="frame-20">
+                  <div
+                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
+                  >
+                    Event Name
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="time montserrat-semi-bold-black-24px">Time</div>
+                </div>
+                <div class="frame-2">
+                  <div class="location montserrat-semi-bold-black-24px">
+                    Location
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="category montserrat-semi-bold-black-24px">
+                    Category
+                  </div>
+                </div>
+              </div>
+              <div class="users-event">
+                <div class="frame-20">
+                  <div
+                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
+                  >
+                    Event Name
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="time-1 montserrat-semi-bold-black-24px">Time</div>
+                </div>
+                <div class="frame-2">
+                  <div class="location-1 montserrat-semi-bold-black-24px">
+                    Location
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="category-1 montserrat-semi-bold-black-24px">
+                    Category
+                  </div>
+                </div>
+              </div>
+              <div class="users-event">
+                <div class="frame-20">
+                  <div
+                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
+                  >
+                    Event Name
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="time-2 montserrat-semi-bold-black-24px">Time</div>
+                </div>
+                <div class="frame-2">
+                  <div class="location-2 montserrat-semi-bold-black-24px">
+                    Location
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="category-2 montserrat-semi-bold-black-24px">
+                    Category
+                  </div>
+                </div>
+              </div>
+              <div class="users-event">
+                <div class="frame-20">
+                  <div
+                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
+                  >
+                    Event Name
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="time-3 montserrat-semi-bold-black-24px">Time</div>
+                </div>
+                <div class="frame-2">
+                  <div class="location-3 montserrat-semi-bold-black-24px">
+                    Location
+                  </div>
+                </div>
+                <div class="frame-2">
+                  <div class="category-3 montserrat-semi-bold-black-24px">
+                    Category
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-bar-structure">
+              <div class="calendar">
+                <img
+                  class="material-symbolscalendar-today"
+                  src="img/material-symbols-calendar-today@2x.png"
+                  alt="material-symbols:calendar-today"
+                />
+                <div class="calendar-1 candal-normal-black-12px">Calendar</div>
+              </div>
+              <a href="/event-list">
+                <div class="link">
+                  <img
+                    class="material-symbolsformat-list-bulleted"
+                    src="img/material-symbols-format-list-bulleted@2x.png"
+                    alt="material-symbols:format-list-bulleted"
+                  />
+                  <div class="event-list candal-normal-black-12px">
+                    Event List
+                  </div>
+                </div></a
+              ><a href="/create-event">
+                <div class="link">
+                  <img
+                    class="gridiconscreate"
+                    src="img/gridicons-create@2x.png"
+                    alt="gridicons:create"
+                  />
+                  <div class="create-event candal-normal-black-12px">
+                    Create Event
+                  </div>
+                </div></a
+              ><a href="/profile">
+                <div class="link">
+                  <img
+                    class="icon-user"
+                    src="img/mdi-user@2x.png"
+                    alt="icon-user"
+                  />
+                  <div class="profile candal-normal-black-12px">Profile</div>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
