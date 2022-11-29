@@ -26,6 +26,7 @@ public class EventInfoController {
         return es.getEventInfoByCategory(category);
     }
 
+
     @GetMapping(path = "User/{id}")
     public List<EventInfo> getEventInfoByUser(@PathVariable("id") Long id){
         return es.getEventInfoByUser(id);
@@ -43,15 +44,19 @@ public class EventInfoController {
         }
     }
 
-    @PostMapping
+    @PostMapping(path="/CreateEvent")
+    //public Boolean addNewEvent(@RequestBody  EventInfo ei, Long hostID){
+        //es.addNewEvent(ei, hostID);
     public Boolean addNewEvent(@RequestBody  EventInfo ei){
         es.addNewEvent(ei);
         return true;
-
     }
-    @DeleteMapping(path = "delete/{EventInfoId}/{UserId}")
-    public void deleteEvent(@PathVariable("EventInfoId") Long id, @PathVariable("UserId") Long userID){
-        es.deleteEvent(id, userID);
+
+
+    
+    @DeleteMapping(path = "{EventInfoId}/{HostID}")
+    public void deleteEvent(@PathVariable("EventInfoId") Long id,@PathVariable("HostID") Long hostId){
+        es.deleteEvent(id,hostId);
     }
 
 }

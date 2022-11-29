@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping
-public class LoginPage {
-    @GetMapping(path = "/")
+public class DemoPage {
+    @GetMapping(path = "/demo")
     public String hello() {
-        return "login-page";
+        return "demo";
     }
 }
