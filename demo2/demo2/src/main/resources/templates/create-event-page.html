@@ -56,6 +56,61 @@
           borderRadius: 4,
         },
       };
+      const createNewEvent = async () => {
+        const name = document.getElementById("eventname").value;
+        const location = document.getElementById("location").value;
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const capacity = document.getElementById("capacity").value;
+        const category = document.getElementById("category").value;
+        let username;
+
+        try {
+          username = window.localStorage.getItem("username");
+        } catch (e) {
+          alert(e);
+        }
+
+        if (!username) {
+          alert("Error! Are you logged in?");
+          return;
+        }
+
+        const data = {
+          name,
+          location,
+          date,
+          time,
+          capacity,
+          category,
+          hostId: "1", // change this to appropriate value
+        };
+
+        const response = await fetch(
+          "http://localhost:8080/api/v1/EventInfo/CreateEvent",
+          {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            body: JSON.stringify(data),
+          }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            if (data === true) {
+              alert("Successfully created event!");
+            } else {
+              alert("Cannot Create Event");
+            }
+          });
+      };
     </script>
     <input
       type="hidden"
@@ -64,12 +119,7 @@
       value="create-event-page"
     />
     <div class="container-center-horizontal">
-      <form
-        class="create-event-page screen"
-        name="form2"
-        action="form2"
-        method="post"
-      >
+      <div class="create-event-page screen">
         <div class="overlap-group1">
           <div class="create-an-event montserrat-bold-white-48px">
             Create an Event
@@ -80,6 +130,7 @@
               <input
                 class="event-name montserrat-bold-black-30px"
                 name="eventname"
+                id="eventname"
                 placeholder="Event name*"
                 type="text"
                 required
@@ -89,6 +140,7 @@
               <input
                 class="location montserrat-bold-black-30px"
                 name="location"
+                id="location"
                 placeholder="Location*"
                 type="text"
                 required
@@ -98,6 +150,7 @@
               <input
                 class="date montserrat-bold-black-30px"
                 name="date"
+                id="date"
                 placeholder="Date*"
                 type="text"
                 required
@@ -107,7 +160,8 @@
               <input
                 class="time montserrat-bold-black-30px"
                 name="time"
-                placeholder="Event name*"
+                id="time"
+                placeholder="time*"
                 type="text"
                 required
               />
@@ -116,7 +170,8 @@
               <input
                 class="capacity montserrat-bold-black-30px"
                 name="capacity"
-                placeholder="Event name*"
+                id="capacity"
+                placeholder="capacity*"
                 type="text"
                 required
               />
@@ -125,19 +180,19 @@
               <input
                 class="category montserrat-bold-black-30px"
                 name="category"
-                placeholder="Event name*"
+                id="category"
+                placeholder="category*"
                 type="text"
                 required
               />
             </div>
             <div class="frame-8">
               <div class="overlap-group">
-                <a href="javascript:SubmitForm('form2')">
-                  <div class="rectangle-51"></div
-                ></a>
-                <div class="create-event montserrat-bold-black-30px">
-                  create event
-                </div>
+                <button class="rectangle-51" onclick="createNewEvent()">
+                  <div class="create-event montserrat-bold-black-30px">
+                    create event
+                  </div>
+                </button>
               </div>
             </div>
           </div>
@@ -187,29 +242,7 @@
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </div>
-    <script>
-      /* Copyright (c) 2016 Tobias Buschor https://goo.gl/gl0mbf | MIT License https://goo.gl/HgajeK */
-
-      if (!HTMLFormElement.prototype.reportValidity) {
-        HTMLFormElement.prototype.reportValidity = function () {
-          if (this.checkValidity()) return true;
-          var btn = document.createElement("button");
-          this.appendChild(btn);
-          btn.click();
-          this.removeChild(btn);
-          return false;
-        };
-      }
-
-      function SubmitForm(form_name) {
-        var form = document.getElementsByName(form_name)[0];
-        if (form.reportValidity()) {
-          form.submit();
-          if (window.submitted) window.submitted();
-        }
-      }
-    </script>
   </body>
 </html>
