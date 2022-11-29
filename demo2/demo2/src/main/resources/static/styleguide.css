@@ -1,0 +1,95 @@
+:root { 
+  --alto: #d9d9d9;
+  --alto-2: #d9d9d95c;
+  --alto-3: #d9d9d959;
+  --black: #000000;
+  --fuel-yellow: #f2af29;
+  --fuel-yellow-2: #f2ae2803;
+  --fuel-yellow-3: #f2ae28c9;
+  --gallery: #f0f0f0;
+  --well-read: #ac3333;
+  --white: #ffffff;
+ 
+  --font-size-l: 30px;
+  --font-size-m: 24px;
+  --font-size-s: 21px;
+  --font-size-xl: 36px;
+  --font-size-xs: 12px;
+  --font-size-xxl: 48px;
+  --font-size-xxxl: 70px;
+ 
+  --font-family-candal: "Candal", Helvetica;
+  --font-family-inter: "Inter", Helvetica;
+  --font-family-montserrat: "Montserrat", Helvetica;
+}
+.montserrat-semi-bold-black-24px {
+  color: var(--black);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.candal-normal-black-12px {
+  color: var(--black);
+  font-family: var(--font-family-candal);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.montserrat-bold-black-30px {
+  color: var(--black);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.candal-normal-white-24px {
+  color: var(--white);
+  font-family: var(--font-family-candal);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.montserrat-normal-black-21px {
+  color: var(--black);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.montserrat-bold-white-48px {
+  color: var(--white);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xxl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.candal-normal-black-24px {
+  color: var(--black);
+  font-family: var(--font-family-candal);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.candal-normal-white-36px {
+  color: var(--white);
+  font-family: var(--font-family-candal);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.inter-semi-bold-white-13px {
+  color: var(--white);
+  font-family: var(--font-family-inter);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+}
