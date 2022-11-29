@@ -25,12 +25,24 @@ public class EventInfoController {
     public List<EventInfo> getEventInfoByCategory(@PathVariable("EventInfoCategory") String category){
         return es.getEventInfoByCategory(category);
     }
-//    @GetMapping(path = "{EventInfoType}")
-//    public List<EventInfo> getEventInfoByType(@PathVariable("EventInfoType")int type){
-//        return es.getEventInfoByType(type);
-//    }
 
 
+    @GetMapping(path = "User/{id}")
+    public List<EventInfo> getEventInfoByUser(@PathVariable("id") Long id){
+        return es.getEventInfoByUser(id);
+    }
+
+    @GetMapping(path = "register/{event}/{user}")
+    public Boolean registerEvent(@PathVariable("event") Long id, @PathVariable("user") Long userID){
+        Boolean res = true;
+        try {
+            es.registerEvent(id, userID);
+        } catch (IllegalStateException e){
+            res = false;
+        } finally{
+            return res;
+        }
+    }
 
     @PostMapping(path="/CreateEvent")
     //public Boolean addNewEvent(@RequestBody  EventInfo ei, Long hostID){
@@ -39,6 +51,7 @@ public class EventInfoController {
         es.addNewEvent(ei);
         return true;
     }
+
 
     
     @DeleteMapping(path = "{EventInfoId}/{HostID}")

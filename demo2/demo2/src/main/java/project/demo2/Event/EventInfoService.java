@@ -10,8 +10,7 @@ import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EventInfoService {
@@ -31,6 +30,17 @@ public class EventInfoService {
     }
     public Optional<EventInfo> getEventInfoById(Long event_id) { return eiRepository.findEventInfoById(event_id); }
     public List<EventInfo> getEventInfoByCategory(String category){ return eiRepository.findEventInfoByCategory(category); }
+    public List<EventInfo> getEventInfoByUser(Long id){
+        List<EventRegistration> eventRegistrations = erRepository.findEventRegistrationByUser(uiRepository.getReferenceById(id));
+        List<EventInfo> eventInfos = new ArrayList<EventInfo>();
+        for (EventRegistration er: eventRegistrations){
+            Optional<EventInfo> ei = eiRepository.findEventInfoById(er.getEvent().getId());
+            if (ei.isPresent()){
+                eventInfos.add(ei.get());
+            }
+        }
+        return eventInfos;
+    }
 
     //public void addNewEvent(EventInfo ei, Long hostID){
     public void addNewEvent(EventInfo ei){
@@ -38,9 +48,11 @@ public class EventInfoService {
         if(eio.isPresent()){
             throw new IllegalStateException("Event existed");
         }
-        //ei.setHostId(hostID); //hostID being set through EventInfo constructor?
-
         eiRepository.save(ei);
+        EventRegistration er = new EventRegistration();
+        er.setEvent(ei);
+        er.setUser(uiRepository.getReferenceById(ei.getHostId()));
+        erRepository.save(er);
     }
     public void deleteEvent(Long id, Long HostID){
         Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
@@ -67,9 +79,14 @@ public class EventInfoService {
 
 
         Optional<EventRegistration> er = erRepository.findEventRegistrationByUserAndEvent(ui.get(), ei.get());
+        List<EventRegistration> registrations = erRepository.findEventRegistrationByUser(ui.get());
         if (er.isPresent()) {
             throw new IllegalStateException("User with id " + userId + " is already registered the event with id " + id);
-        } else {
+        }
+        else if (registrations.size() >= er.get().getEvent().getCapacity()){
+            throw new IllegalStateException("Event with id  " + id + " is already full");
+        }
+        else{
             erRepository.save(new EventRegistration(ui.get(), ei.get()));
         }
     }
