@@ -31,17 +31,6 @@ public class EventInfoController {
 //    }
 
 
-    @GetMapping(path = "register/{event}/{user}")
-    public boolean registerEvent(@PathVariable("event") Long id, @PathVariable("user") Long userID){
-        boolean res = true;
-        try {
-            es.registerEvent(id, userID);
-        } catch (IllegalStateException e){
-            res = false;
-        } finally{
-            return res;
-        }
-    }
 
     @PostMapping
     public Boolean addNewEvent(@RequestBody  EventInfo ei, long hostID){
