@@ -78,8 +78,6 @@
           lastName,
         };
 
-        console.log(data);
-
         const response = await fetch(
           "http://localhost:8080/api/v1/UserInfo/signup",
           {
@@ -101,6 +99,7 @@
             if (data === true) {
               window.localStorage.setItem("username", userName);
               window.localStorage.setItem("password", password);
+              window.location.href = "/calendar";
             } else {
               alert("Cannot Sign Up. Check if Username or Email is taken.");
             }
