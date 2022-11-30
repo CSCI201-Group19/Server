@@ -42,6 +42,12 @@ public class EventInfoService {
         return eventInfos;
     }
 
+    public List<EventInfo> getEventInfoCreatedByUser(Long id) {
+        return eiRepository.findEventInfoByHostID(id);
+    }
+
+
+
     //public void addNewEvent(EventInfo ei, Long hostID){
     public void addNewEvent(EventInfo ei){
         Optional<EventInfo> eio = eiRepository.findEventInfoById(ei.getId());

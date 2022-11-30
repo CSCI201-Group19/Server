@@ -26,6 +26,10 @@ public class EventInfoController {
         return es.getEventInfoByCategory(category);
     }
 
+    @GetMapping(path = "createdBy/{userID}")
+    public List<EventInfo> getEventInfoCreatedByUser(@PathVariable("userID") Long id){
+        return es.getEventInfoCreatedByUser(id);
+    }
 
     @GetMapping(path = "User/{id}")
     public List<EventInfo> getEventInfoByUser(@PathVariable("id") Long id){
