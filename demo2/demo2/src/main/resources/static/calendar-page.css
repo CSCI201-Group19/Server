@@ -65,7 +65,7 @@
   white-space: nowrap;
 }
 
-.calendar-page .frame-15 {
+.calendar-page .events-on-day {
   align-items: flex-start;
   background-color: var(--alto-3);
   border: 1px none;

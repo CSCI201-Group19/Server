@@ -13,7 +13,6 @@
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <link rel="stylesheet" type="text/css" href="/calendar-page.css" />
-    <script src="https://animaapp.s3.amazonaws.com/widgets/vendors/63357ca5606e9507a0e38848/vendors.js"></script>
     <link rel="stylesheet" type="text/css" href="/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="/globals.css" />
   </head>
@@ -65,17 +64,16 @@
           <div class="flex-row">
             <div class="flex-col">
               <div class="your-monthly-plans valign-text-middle">
-                <!-- Month needs to be updated by calendar input -->
                 Your <span id="month"></span> Plans
               </div>
               <div class="date-picker candal-normal-white-36px">
                 <label for="date-input">Date: </label>
                 <input type="date" id="date-input" />
-
               </div>
             </div>
-            <div class="frame-15">
+            <div class="events-on-day" id="daily-events-list">
               <div class="place candal-normal-white-36px"><span id="currentDay"></span></div>
+              <!-- this part needs to be dynamically loaded from API -->
               <div class="users-event">
                 <div class="frame-20">
                   <div
@@ -172,8 +170,6 @@
               const monthOptions = { month: "long" };
               let currentDayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
 
-              // dateInput.value = new Date().toISOString().slice(0, 10);
-              // monthValue.textContent = "November";
               dateInput.valueAsDate = new Date();
               monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(dateInput.valueAsDate);
               currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
@@ -183,14 +179,14 @@
                 const currentDay = document.querySelector('#currentDay');
                 // increment the date
                 let date = event.target.valueAsDate;
-                console.log("Before increment:");
-                console.log(date.toString());
                 date.setDate(event.target.valueAsDate.getDate() + 1);
-                console.log("After increment:");
-                console.log(date.toString());
 
+                // format the month variable and the current date variable
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
                 currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
+
+                // call
+
 
               });
             </script>

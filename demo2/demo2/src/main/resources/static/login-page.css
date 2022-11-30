@@ -94,12 +94,17 @@
   color: #00000099;
 }
 
+.login-page .button {
+
+}
+
 .login-page .vector {
   align-self: center;
   cursor: pointer;
   height: 49px;
-  margin-right: 1.0px;
-  margin-top: 44px;
+  margin-right: auto;
+  margin-top: auto;
+  marging-left: auto;
   width: 302px;
 }
 
