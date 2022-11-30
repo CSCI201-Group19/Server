@@ -70,9 +70,33 @@
         } catch (e) {
           alert(e);
         }
-
+        console.log(name+","+location+","+date+","+time+","+capacity+","+category);
         if (!username) {
           alert("Error! Are you logged in?");
+          return;
+        }
+        if(name==="") {
+          alert("Error! Please fill your event name");
+          return;
+        }
+        else if(location===""){
+          alert("Error! Please fill your location");
+          return;
+        }
+        else if(time===""){
+          alert("Error! Please fill your time");
+          return;
+        }
+        else if(date===""){
+          alert("Error! Please fill your date");
+          return;
+        }
+        else if(capacity===""){
+          alert("Error! Please fill your capacity");
+          return;
+        }
+        else if(category===""){
+          alert("Error! Please fill your category");
           return;
         }
 
@@ -106,6 +130,13 @@
           .then(function (data) {
             if (data === true) {
               alert("Successfully created event!");
+              document.getElementById("eventname").value="";
+              document.getElementById("location").value="";
+              document.getElementById("date").value="";
+              document.getElementById("time").value="";
+              document.getElementById("capacity").value="";
+              document.getElementById("category").value="";
+
             } else {
               alert("Cannot Create Event");
             }
