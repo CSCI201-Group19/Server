@@ -50,7 +50,7 @@
   width: 220px;
 }
 
-.profile-page .tommy-trojan {
+.profile-page .profile-name {
   color: var(--black);
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-xxxl);
@@ -76,7 +76,7 @@
   padding: 4px 37px;
 }
 
-.profile-page .delete-account {
+.profile-page .logout {
   color: var(--black);
   font-family: var(--font-family-montserrat);
   font-size: 15px;
