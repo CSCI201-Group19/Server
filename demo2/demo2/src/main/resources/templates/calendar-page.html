@@ -64,104 +64,18 @@
         <div class="overlap-group">
           <div class="flex-row">
             <div class="flex-col">
-              <div class="your-february-plans valign-text-middle">
-                Your February Plans
+              <div class="your-monthly-plans valign-text-middle">
+                <!-- Month needs to be updated by calendar input -->
+                Your <span id="month"></span> Plans
               </div>
-              <div class="date-picker">
-                <script>
-                  // prettier-ignore
-                  (function(run, require) {
-          var exports = {}
+              <div class="date-picker candal-normal-white-36px">
+                <label for="date-input">Date: </label>
+                <input type="date" id="date-input" />
 
-          run(
-            {"label":"Select a day","placeholder":"","description":"","error":"","disabled":false,"required":false,"multiline":false,"size":"md","iconName":"IconCalendar","iconWidth":30,"variant":"default","width":"300px","id":"63514b86b7ecf0a90f5da160","widgetName":"Date Picker","widgetCategory":"63357ca5606e9507a0e38848","widgetCategoryName":"Mantine UI","source_type":"react","custom_css":"","useFigmaLayers":false,"version":1,"storyCode":"<MantineDates.DatePicker\r\n\t\t\terror=\"\"\r\n\t\t\tsize=\"md\"\r\n\t\t\tvalue={value}\r\n\t\t\tplaceholder=\"\"\r\n\t\t\tdescription=\"\"\r\n\t\t\ticonWidth={30}\r\n\t\t\tdisabled={false}\r\n\t\t\trequired={false}\r\n\t\t\tmultiline={false}\r\n\t\t\tvariant=\"default\"\r\n\t\t\tonChange={setValue}\r\n\t\t\tlabel=\"Select a day\"\r\n\t\t\tstyle={{ width: \"300px\" }}\r\n\t\t\ticon={<TablerIcons.IconCalendar />}\r\n\t\t\t/>","variableDeclarationCode":"const [value, setValue] = React.useState();"},
-            exports,
-            { exports: exports },
-            function require(name) {
-              if(typeof __anima_widget_modules === 'object') {
-                for(const module of __anima_widget_modules) {
-                  if(module.id === "63357ca5606e9507a0e38848" && module.name === name) {
-                    return module.exports
-                  }
-                }
-              }
-
-              // Turn module names into capitalized variable names:
-              // react => React
-              // react-dom => ReactDom
-              name = name
-                  .replace(/(^|\/|-)(\S)/g, (s) => s.toUpperCase())
-                  .replace("@", "")
-                  .replace("/", "")
-                  .replace("-", "")
-              name = name.charAt(0).toUpperCase() + name.slice(1)
-
-              if(window[name]) {
-                return window[name]
-              } else {
-                throw new Error('Module not found: ' + name)
-              }
-            }
-          )
-      })(
-          function run(__anima_params__, exports, module, require) {
-              "use strict";
-
-var _react = _interopRequireDefault(require("react"));
-
-var _reactDom = _interopRequireDefault(require("react-dom"));
-
-var MantineCore = _interopRequireWildcard(require("@mantine/core"));
-
-var MantineHooks = _interopRequireWildcard(require("@mantine/hooks"));
-
-var EmotionReact = _interopRequireWildcard(require("@emotion/react"));
-
-var MantineDates = _interopRequireWildcard(require("@mantine/dates"));
-
-var TablerIcons = _interopRequireWildcard(require("@tabler/icons"));
-
-var Dayjs = _interopRequireWildcard(require("dayjs"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-const Example = args => {
-  const [value, setValue] = _react.default.useState();
-
-  return /*#__PURE__*/_react.default.createElement(MantineDates.DatePicker, {
-    error: "",
-    size: "md",
-    value: value,
-    placeholder: "",
-    description: "",
-    iconWidth: 30,
-    disabled: false,
-    required: false,
-    multiline: false,
-    variant: "default",
-    onChange: setValue,
-    label: "Select a day",
-    style: {
-      width: "300px"
-    },
-    icon: /*#__PURE__*/_react.default.createElement(TablerIcons.IconCalendar, null)
-  });
-};
-
-const args = __anima_params__;
-
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(Example, args), document.querySelector(".date-picker"));
-          }
-      )
-                </script>
               </div>
             </div>
             <div class="frame-15">
-              <div class="place candal-normal-white-36px">Date</div>
+              <div class="place candal-normal-white-36px"><span id="currentDay"></span></div>
               <div class="users-event">
                 <div class="frame-20">
                   <div
@@ -251,6 +165,35 @@ _reactDom.default.render( /*#__PURE__*/_react.default.createElement(Example, arg
                 </div>
               </div>
             </div>
+            <script>
+              const dateInput = document.querySelector('.date-picker');
+              const monthValue = document.querySelector('#month');
+              const currentDay = document.querySelector('#currentDay');
+              const monthOptions = { month: "long" };
+              let currentDayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+
+              // dateInput.value = new Date().toISOString().slice(0, 10);
+              // monthValue.textContent = "November";
+              dateInput.valueAsDate = new Date();
+              monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(dateInput.valueAsDate);
+              currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
+
+              dateInput.addEventListener('change', (event) => {
+                const monthValue = document.querySelector('#month');
+                const currentDay = document.querySelector('#currentDay');
+                // increment the date
+                let date = event.target.valueAsDate;
+                console.log("Before increment:");
+                console.log(date.toString());
+                date.setDate(event.target.valueAsDate.getDate() + 1);
+                console.log("After increment:");
+                console.log(date.toString());
+
+                monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
+                currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
+
+              });
+            </script>
           </div>
           <div class="tab-bar">
             <div class="tab-bar-structure">

@@ -76,7 +76,7 @@
   padding: 4px 37px;
 }
 
-.profile-page-edit-information .delete-account {
+.profile-page-edit-information .logout {
   color: var(--black);
   font-family: var(--font-family-montserrat);
   font-size: 15px;
