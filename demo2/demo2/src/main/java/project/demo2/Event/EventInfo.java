@@ -1,8 +1,12 @@
 package project.demo2.Event;
 
+import project.demo2.User.UserInfo;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
+
 @Entity
 @Table
 public class EventInfo {
@@ -22,6 +26,7 @@ public class EventInfo {
     private LocalTime time;
     private int capacity;
     private Long hostId;
+
 
 
     public EventInfo() {

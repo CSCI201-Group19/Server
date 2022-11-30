@@ -32,16 +32,9 @@ public class EventInfoController {
         return es.getEventInfoByUser(id);
     }
 
-    @GetMapping(path = "register/{event}/{user}")
-    public Boolean registerEvent(@PathVariable("event") Long id, @PathVariable("user") Long userID){
-        Boolean res = true;
-        try {
-            es.registerEvent(id, userID);
-        } catch (IllegalStateException e){
-            res = false;
-        } finally{
-            return res;
-        }
+    @GetMapping(path = "register/{eventID}/{userID}")
+    public Boolean registerEvent(@PathVariable("eventID") Long id, @PathVariable("userID") Long userID){
+        return es.registerEvent(id, userID);
     }
 
     @PostMapping(path="/CreateEvent")

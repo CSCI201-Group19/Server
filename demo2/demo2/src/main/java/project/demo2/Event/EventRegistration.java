@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class EventRegistration {
     @EmbeddedId
-    EventRegistrationKey id;
+    EventRegistrationKey id = new EventRegistrationKey();
 
     @ManyToOne
     @MapsId("userID")
