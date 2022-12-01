@@ -117,6 +117,7 @@ public class EventInfoService {
             } else {
                 erRepository.save(new EventRegistration(ui.get(), ei.get()));
                 ei.get().setNumParticipants(ei.get().getNumParticipants()+1); //add 1 to event's number of participants
+                eiRepository.save(ei.get());
             }
         }
         catch(IllegalStateException ie){
@@ -136,6 +137,7 @@ public class EventInfoService {
         if (er.isPresent()) {
             erRepository.delete(er.get());
             ei.get().setNumParticipants(ei.get().getNumParticipants()-1);
+            eiRepository.save(ei.get());
         } else {
             throw new IllegalStateException("User with id " + userId + " is not registered the event with id " + id);
         }
