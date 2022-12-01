@@ -64,6 +64,20 @@
   white-space: nowrap;
 }
 
+.calendar-page .date {
+  background-color: transparent;
+  border: 0;
+  height: 45px;
+  left: 10px;
+  letter-spacing: 0;
+  line-height: 50px;
+  padding: 0;
+  filter: invert(1);
+  position: relative;
+  white-space: nowrap;
+  width: 250px;
+}
+
 .calendar-page .events-on-day {
   align-items: flex-start;
   background-color: var(--alto-3);

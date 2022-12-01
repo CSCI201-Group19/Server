@@ -132,13 +132,13 @@
 .create-event-page .time {
   background-color: transparent;
   border: 0;
-  height: 30px;
+  height: 35px;
   left: 38px;
   letter-spacing: 0;
   line-height: 30px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 18px;
   white-space: nowrap;
   width: 209px;
 }

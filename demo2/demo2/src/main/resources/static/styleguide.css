@@ -70,6 +70,14 @@
   font-weight: 700;
 }
 
+.montserrat-bold-black-40px {
+  color: var(--black);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 700;
+}
+
 .candal-normal-black-24px {
   color: var(--black);
   font-family: var(--font-family-candal);
