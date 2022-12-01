@@ -63,7 +63,7 @@
           document.getElementById("yy").innerHTML+=`<div class="event-listing">
                 <div class="flex-col montserrat-semi-bold-black-24px">
                   <div class="overlap-group">
-                    <div class="rectangle-52"></div>
+                    <div class="event-name-bar"></div>
                     <div class="event-xxx valign-text-middle">${n}</div>
                   </div>
                     <div class="frame-2">
@@ -117,8 +117,8 @@
 
           document.getElementById("ae").innerHTML+=
                   `<div class="event-register-listing">
-                <div class="frame-24">
-                  <div class="frame-20">
+                <div class="event-info-box">
+                  <div class="event-name-bar">
                     <div class="event-name valign-text-middle montserrat-semi-bold-black-24px">
                       ${object[i].name}
                     </div>
@@ -216,9 +216,6 @@
         },
       };
 
-      async function buildEventsList() {
-
-      }
 
     </script>
 
@@ -236,8 +233,8 @@
 
 <!--
               <div class="event-register-listing">
-                <div class="frame-24">
-                  <div class="frame-20">
+                <div class="event-info-box">
+                  <div class="event-name-bar">
                     <div
                       class="event-name valign-text-middle montserrat-semi-bold-black-24px"
                     >
@@ -269,8 +266,8 @@
                 </div>
               </div>
               <div class="event-register-listing">
-                <div class="frame-24">
-                  <div class="frame-20">
+                <div class="event-info-box">
+                  <div class="event-name-bar">
                     <div
                       class="event-name valign-text-middle montserrat-semi-bold-black-24px"
                     >
