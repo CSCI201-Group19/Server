@@ -22,6 +22,8 @@ public interface EventInfoRepository
 
     @Query("select ei from EventInfo ei where ei.hostId = ?1")
     List<EventInfo> findEventInfoByHostID(Long user_id);
+    @Query("select ei from EventInfo ei where ei.hostName = ?1")
+    List<EventInfo> findEventInfoByHostName(String hostName);
 
 
 

@@ -20,4 +20,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo,Long> {
     @Query("select ui.email from UserInfo ui where ui.email = ?1")
     Optional<String> findEmail(String email);
 
+    @Query("select ui.id from UserInfo ui where ui.userName = ?1")
+    Long findIdByUsername(String name);
+
 }

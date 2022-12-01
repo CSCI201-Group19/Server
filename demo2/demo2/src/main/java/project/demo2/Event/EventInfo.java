@@ -27,12 +27,13 @@ public class EventInfo {
     private int capacity;
     private Long hostId;
 
+    private String hostName;
 
 
     public EventInfo() {
     }
 
-    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity, Long hostId) {
+    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity, Long hostId, String hostName) {
         this.name = name;
         this.location = location;
         this.category = category;
@@ -40,6 +41,7 @@ public class EventInfo {
         this.time = time;
         this.capacity = capacity;
         this.hostId = hostId;
+        this.hostName=hostName;
     }
 
     public Long getId() {
@@ -105,6 +107,13 @@ public class EventInfo {
     public void setHostId(Long hostId) {
         this.hostId = hostId;
     }
+    public String getHostName(){
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
 
     @Override
     public String toString() {
@@ -117,6 +126,7 @@ public class EventInfo {
                 ", time=" + time +
                 ", capacity=" + capacity +
                 ", hostId=" + hostId +
+                ", hostName=" + hostName +
                 '}';
     }
 }

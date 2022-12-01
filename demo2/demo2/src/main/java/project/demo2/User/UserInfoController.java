@@ -49,6 +49,7 @@ public class UserInfoController {
 
     @GetMapping(path = "/fetchEventByUserCreate")
     public List<EventInfo> fetchEventCreated(@RequestParam String userName){
+
         return uiService.UserEventsByNameCreated(userName);
 
     }

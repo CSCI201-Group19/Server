@@ -78,7 +78,8 @@ public class EventInfoService {
         eiRepository.save(ei);
         EventRegistration er = new EventRegistration();
         er.setEvent(ei);
-        er.setUser(uiRepository.getReferenceById(ei.getHostId()));
+        //er.setUser(uiRepository.getReferenceById(ei.getHostId()));
+        er.setUser(uiRepository.getReferenceById(uiRepository.findIdByUsername(ei.getHostName())));
         erRepository.save(er);
     }
     public void deleteEvent(Long id, Long HostID){

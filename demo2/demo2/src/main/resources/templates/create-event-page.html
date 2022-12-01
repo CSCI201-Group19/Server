@@ -108,6 +108,7 @@
           capacity,
           category,
           hostId: "1", // change this to appropriate value
+          hostName:localStorage.getItem("username"),
         };
 
         const response = await fetch(

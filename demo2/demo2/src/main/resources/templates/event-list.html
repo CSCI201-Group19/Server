@@ -33,12 +33,13 @@
         if(obj.length>4){
           document.getElementById("yy").style.overflowY="scroll" ;
         }
+
         for (let i = 0; i < obj.length; i++){
-          n=obj[0].name;
-          t=obj[0].time;
-          l=obj[0].location;
-          c=obj[0].category;
-          ca=obj[0].capacity;
+          n=obj[i].name;
+          t=obj[i].time;
+          l=obj[i].location;
+          c=obj[i].category;
+          ca=obj[i].capacity;
           document.getElementById("yy").innerHTML+=`<div class="event-listing">
                 <div class="flex-col montserrat-semi-bold-black-24px">
                   <div class="overlap-group">
@@ -58,7 +59,7 @@
                     <div class="xx-1">${ca}</div>
                   </div>
                 </div>
-              </div>
+              </div><br>
 `;
         }
 
