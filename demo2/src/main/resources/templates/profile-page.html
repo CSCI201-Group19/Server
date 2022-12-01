@@ -16,20 +16,34 @@
     <link rel="stylesheet" type="text/css" href="/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="/globals.css" />
     <script>
-      function f1(){
+      function f1() {
         var x1http = new XMLHttpRequest();
-        x1http.onload = function() {
-          var obj=JSON.parse(this.responseText);
-          document.getElementById("username").innerHTML="Username: "+obj.userName;
-          document.getElementById("email").innerHTML="Email: "+obj.email;
-          document.getElementById("firstname").innerHTML="First Name: "+obj.firstName;
-          document.getElementById("lastname").innerHTML="Last Name: "+obj.lastName;
+        x1http.onload = function () {
+          var obj = JSON.parse(this.responseText);
+          document.getElementById("username").innerHTML =
+            "Username: " + obj.userName;
+          document.getElementById("email").innerHTML = "Email: " + obj.email;
+          document.getElementById("firstname").innerHTML =
+            "First Name: " + obj.firstName;
+          document.getElementById("lastname").innerHTML =
+            "Last Name: " + obj.lastName;
+          document.getElementById("mainfirst").innerHTML = obj.firstName;
+          document.getElementById("mainlast").innerHTML = obj.lastName;
         };
-        x1http.open("GET", "http://localhost:8080/api/v1/UserInfo/fetchProfile?userName="+localStorage.getItem("username"),true)
+        x1http.open(
+          "GET",
+          "http://localhost:8080/api/v1/UserInfo/fetchProfile?userName=" +
+            localStorage.getItem("username"),
+          true
+        );
         x1http.send();
-
       }
     </script>
+    <style>
+      .mainName {
+        text-align: center;
+      }
+    </style>
   </head>
   <body style="margin: 0" onload="f1()">
     <script>
@@ -81,15 +95,16 @@
             <div class="flex-col">
               <img
                 class="t-black-aura-young"
-                src="img/-t--black---aura-young@2x.png"
+                src="img/userIcon.png"
                 alt="T] Black - Aura Young"
               />
-              <h1 class="profile-name valign-text-middle">Tommy<br />Trojan</h1>
+              <div class="profile-name valign-text-middle">
+                <div class="mainName" id="mainfirst"></div>
+                <div class="mainName" id="mainlast"></div>
+              </div>
               <a href="/">
                 <div class="overlap-group7">
-                  <div class="logout valign-text-middle">
-                    Logout
-                  </div>
+                  <div class="logout valign-text-middle">Logout</div>
                 </div>
               </a>
             </div>
@@ -97,20 +112,31 @@
               <div class="overlap-group-1">
                 <div class="your-profile">Your Profile:</div>
                 <div class="overlap-group1">
-                  <div id ="username" class="username montserrat-bold-black-30px">
+                  <div
+                    id="username"
+                    class="username montserrat-bold-black-30px"
+                  >
                     Username:
                   </div>
                 </div>
                 <div class="overlap-group">
-                  <div id ="email" class="email montserrat-bold-black-30px">Email:</div>
+                  <div id="email" class="email montserrat-bold-black-30px">
+                    Email:
+                  </div>
                 </div>
                 <div class="overlap-group">
-                  <div id ="firstname" class="first-name montserrat-bold-black-30px">
+                  <div
+                    id="firstname"
+                    class="first-name montserrat-bold-black-30px"
+                  >
                     First Name:
                   </div>
                 </div>
                 <div class="overlap-group3">
-                  <div id ="lastname" class="last-name montserrat-bold-black-30px">
+                  <div
+                    id="lastname"
+                    class="last-name montserrat-bold-black-30px"
+                  >
                     Last Name:
                   </div>
                 </div>
