@@ -13,6 +13,7 @@ public class UserInfoConfig {
         return args ->{
             UserInfo alex = new UserInfo("Alex", "alex123@usc.edu","alex1234alex", "Alex","xyz");
             UserInfo jason = new UserInfo("Jason", "jason456@usc.edu","jason1234","jason","abc");
+            UserInfo leon = new UserInfo("Leon","leon789@usc.edu","leon123123","Leon","zxc");
             repository.saveAll(List.of(alex,jason));
         };
 
