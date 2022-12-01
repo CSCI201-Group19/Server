@@ -62,6 +62,7 @@
 }
 
 .profile-page-edit-information .overlap-group7 {
+  display: none !important;
   align-items: flex-start;
   background-color: var(--alto);
   border-radius: 15px;
@@ -144,7 +145,7 @@
   line-height: 30px;
   padding: 0;
   white-space: nowrap;
-  width: 169px;
+  width: 400px;
 }
 
 .profile-page-edit-information .username::placeholder {
@@ -172,7 +173,7 @@
   line-height: 30px;
   padding: 0;
   white-space: nowrap;
-  width: 97px;
+  width: 400px;
 }
 
 .profile-page-edit-information .email::placeholder {
@@ -187,7 +188,7 @@
   line-height: 30px;
   padding: 0;
   white-space: nowrap;
-  width: 180px;
+  width: 400px;
 }
 
 .profile-page-edit-information .first-name::placeholder {
@@ -215,7 +216,7 @@
   line-height: 30px;
   padding: 0;
   white-space: nowrap;
-  width: 176px;
+  width: 400px;
 }
 
 .profile-page-edit-information .last-name::placeholder {

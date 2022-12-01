@@ -22,6 +22,64 @@
   </head>
   <body style="margin: 0">
     <script>
+      const editProfie = async () => {
+        var x1http = new XMLHttpRequest();
+        var password = "";
+        x1http.onload = function () {
+          var obj = JSON.parse(this.responseText);
+          password = obj.password;
+        };
+        x1http.open(
+          "GET",
+          "http://localhost:8080/api/v1/UserInfo/fetchProfile?userName=" +
+            localStorage.getItem("username"),
+          true
+        );
+        x1http.send();
+
+        const email = document.getElementById("email").value;
+        const userName = document.getElementById("username").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+
+        const data = {
+          email,
+          password,
+          userName,
+          firstName,
+          lastName,
+        };
+
+        const response = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/signup",
+          {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            body: JSON.stringify(data),
+          }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            if (data === true) {
+              window.localStorage.setItem("username", userName);
+              window.localStorage.setItem("password", password);
+              window.location.href = "/profile";
+            } else {
+              alert(
+                "Cannot edit the profile. Check if Username or Email is taken."
+              );
+            }
+          });
+      };
+
       window.theme = {
         primaryColor: "#1890ff",
         secondaryColor: "#1890ff",
@@ -71,24 +129,23 @@
       <form
         class="profile-page-edit-information screen"
         name="form3"
-        action="form3"
-        method="post"
+        action="profile"
       >
         <div class="overlap-group6">
           <div class="flex-row">
             <div class="flex-col">
               <img
                 class="t-black-aura-young"
-                src="img/-t--black---aura-young@2x.png"
+                src="img/userIcon.png"
                 alt="T] Black - Aura Young"
               />
               <div class="tommy-trojan valign-text-middle">
                 Tommy<br />Trojan
               </div>
               <div class="overlap-group7">
-                <div class="delete-account valign-text-middle">
+                <!-- <div class="delete-account valign-text-middle">
                   Delete Account
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="profile-info-group">
@@ -131,13 +188,13 @@
                   />
                 </div>
                 <div class="overlap-group1">
-                  <a href="javascript:SubmitForm('form3')">
-                    <div class="rectangle-51"></div></a
-                  ><a href="/profile"
-                    ><div class="submit-changes montserrat-bold-black-30px">
-                      submit changes
+                  <button onclick="editProfie()">
+                    <div class="rectangle-51"></div></button
+                  ><button onclick="editProfile()">
+                    <div class="submit-changes montserrat-bold-black-30px">
+                      Submit changes
                     </div>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -203,13 +260,13 @@
         };
       }
 
-      function SubmitForm(form_name) {
-        var form = document.getElementsByName(form_name)[0];
-        if (form.reportValidity()) {
-          form.submit();
-          if (window.submitted) window.submitted();
-        }
-      }
+      // function SubmitForm(form_name) {
+      //   var form = document.getElementsByName(form_name)[0];
+      //   if (form.reportValidity()) {
+      //     form.submit();
+      //     if (window.submitted) window.submitted();
+      //   }
+      // }
     </script>
   </body>
 </html>
