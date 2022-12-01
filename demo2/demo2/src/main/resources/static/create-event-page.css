@@ -79,13 +79,13 @@
 .create-event-page .event-name {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 45px;
   left: 39px;
   letter-spacing: 0;
-  line-height: 30px;
+  line-height: 50px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 10px;
   white-space: nowrap;
   width: 325px;
 }
@@ -97,13 +97,13 @@
 .create-event-page .location {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 45px;
   left: 38px;
   letter-spacing: 0;
-  line-height: 30px;
+  line-height: 50px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 10px;
   white-space: nowrap;
   width: 209px;
 }
@@ -115,15 +115,15 @@
 .create-event-page .date {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 45px;
   left: 38px;
   letter-spacing: 0;
-  line-height: 30px;
+  line-height: 50px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 10px;
   white-space: nowrap;
-  width: 209px;
+  width: 250px;
 }
 
 .create-event-page .date::placeholder {
@@ -133,7 +133,7 @@
 .create-event-page .time {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 30px;
   left: 38px;
   letter-spacing: 0;
   line-height: 30px;
@@ -151,13 +151,13 @@
 .create-event-page .capacity {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 45px;
   left: 38px;
   letter-spacing: 0;
-  line-height: 30px;
+  line-height: 50px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 10px;
   white-space: nowrap;
   width: 209px;
 }
@@ -169,13 +169,13 @@
 .create-event-page .category {
   background-color: transparent;
   border: 0;
-  height: 23px;
+  height: 45px;
   left: 38px;
   letter-spacing: 0;
-  line-height: 30px;
+  line-height: 50px;
   padding: 0;
   position: relative;
-  top: 22px;
+  top: 10px;
   white-space: nowrap;
   width: 209px;
 }
