@@ -62,21 +62,41 @@
       async function getEvents() {
         // Fetch API data:
         const date = localStorage.getItem("curr_date");
-        const username = window.localStorage.getItem('username').toLowerCase();
-        const eventsURL = "http://localhost:8080/api/v1/UserInfo/fetchEventByDateUser?date=" +
-                            date + "&userName=" + username;
+        const username = window.localStorage.getItem('username');
+        const eventsURL = "http://localhost:8080/api/v1/EventInfo/User/" + username + "/" + date;
+
+        // const eventsURL = "http://localhost:8080/api/v1/EventInfo";
+        //DEBUG WITH ALL EVENTS: http://localhost:8080/api/v1/EventInfo
 
         let xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", eventsURL, true );
-        xmlHttp.send( null );
-        return JSON.parse(xmlHttp.responseText);
+        xmlHttp.open("GET", eventsURL, true);
+
+        let parsedResponse = null;
+
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState === xmlHttp.DONE) {
+            if (xmlHttp.status === 200) {
+              try {
+                parsedResponse = JSON.parse(xmlHttp.responseText);
+                console.log(parsedResponse);
+                buildEventsList(parsedResponse);
+              } catch (err) {
+                // 👇️ SyntaxError: Unexpected end of JSON input
+                console.log('error', err);
+              }
+            }
+          }
+
+        }
+        xmlHttp.send(null);
+        return false;
       }
 
-      async function buildEventsList() {
-        const eventsArr = await getEvents();
+      async function buildEventsList(eventsArr) {
+        console.log(eventsArr.length);
         // Populate character cards' HTML:
-        eventsListContainer.innerHTML +=
-                "<div class=\"place candal-normal-white-24px\"><span id=\"currentDay\"></span></div>"
+        let prettyDate = localStorage.getItem("curr_date_pretty");
+        let html = "<div class=\"place candal-normal-white-24px\"><span id=\"currentDay\">" + prettyDate + "</span></div>";
         for (let i = 0; i < eventsArr.length; i++) {
           // Populate event list
           const eventDate = new Date(eventsArr[i].time);
@@ -87,7 +107,7 @@
             timeZone: 'America/Los_Angeles'
           };
           const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
-          eventsListContainer.innerHTML +=
+          html +=
                   "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
                   + "<div class=\"frame-20\">"
                   + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
@@ -108,6 +128,7 @@
                   + "</div>"
                   + "</div>"
         }
+        document.getElementById('daily-events-list').innerHTML = html;
 
       }
     </script>
@@ -137,13 +158,12 @@
 
               dateInput.valueAsDate = new Date();
 
+              let prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
               window.localStorage.setItem("curr_date", dateInput.valueAsDate.toISOString().slice(0, 10));
-              buildEventsList();
+              window.localStorage.setItem("curr_date_pretty", prettyCurrentDay);
+              getEvents();
 
               monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(dateInput.valueAsDate);
-              currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
-
-
 
               dateInput.addEventListener('change', (event) => {
                 const monthValue = document.querySelector('#month');
@@ -154,13 +174,13 @@
 
                 // format the month variable and the current date variable
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
-                currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
+                // currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
 
                 // update locally stored curr date
                 window.localStorage.setItem("curr_date", date.toISOString().slice(0, 10));
 
                 // call event list builder
-                buildEventsList();
+                getEvents();
 
               });
             </script>
