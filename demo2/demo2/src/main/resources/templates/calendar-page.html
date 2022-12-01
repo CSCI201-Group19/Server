@@ -64,7 +64,7 @@
         const date = localStorage.getItem("curr_date");
         const username = window.localStorage.getItem('username');
         const eventsURL = "http://localhost:8080/api/v1/EventInfo/User/" + username + "/" + date;
-
+        console.log(eventsURL);
         // const eventsURL = "http://localhost:8080/api/v1/EventInfo";
         //DEBUG WITH ALL EVENTS: http://localhost:8080/api/v1/EventInfo
 
@@ -99,14 +99,14 @@
         let html = "<div class=\"place candal-normal-white-24px\"><span id=\"currentDay\">" + prettyDate + "</span></div>";
         for (let i = 0; i < eventsArr.length; i++) {
           // Populate event list
-          const eventDate = new Date(eventsArr[i].time);
+          // const eventDate = new Date(eventsArr[i].time);
           const eventListOptions = {
             month: 'long', day: 'numeric',
             hour: 'numeric', minute: 'numeric',
             hour12: true,
             timeZone: 'America/Los_Angeles'
           };
-          const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
+          // const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
           html +=
                   "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
                   + "<div class=\"frame-20\">"
@@ -114,7 +114,7 @@
                   + eventsArr[i].name + "</div>"
                   + "<div class=\"frame-2\">"
                   + "<div class=\"time montserrat-semi-bold-black-24px\">"
-                  + formattedDateString
+                  + eventsArr[i].time
                   + "</div>"
                   + "<div class=\"frame-2\">"
                   + "<div class=\"location monstserrat-semi-bold-black-24px\">"
@@ -128,6 +128,7 @@
                   + "</div>"
                   + "</div>"
         }
+        console.log(html);
         document.getElementById('daily-events-list').innerHTML = html;
 
       }
@@ -174,10 +175,12 @@
 
                 // format the month variable and the current date variable
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
+                prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
                 // currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
 
                 // update locally stored curr date
                 window.localStorage.setItem("curr_date", date.toISOString().slice(0, 10));
+                window.localStorage.setItem("curr_date_pretty", prettyCurrentDay);
 
                 // call event list builder
                 getEvents();
