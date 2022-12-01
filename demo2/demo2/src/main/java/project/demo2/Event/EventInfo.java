@@ -28,12 +28,13 @@ public class EventInfo {
     private Long hostId;
     private int numParticipants;
 
+    private String hostName;
 
 
     public EventInfo() {
     }
 
-    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity, Long hostId) {
+    public EventInfo(String name, String location, String category, LocalDate date, LocalTime time, int capacity, Long hostId, String hostName) {
         this.name = name;
         this.location = location;
         this.category = category;
@@ -42,6 +43,7 @@ public class EventInfo {
         this.capacity = capacity;
         this.hostId = hostId;
         this.numParticipants = 1;
+        this.hostName=hostName;
     }
 
     public Long getId() {
@@ -107,6 +109,13 @@ public class EventInfo {
     public void setHostId(Long hostId) {
         this.hostId = hostId;
     }
+    public String getHostName(){
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
 
     public int getNumParticipants(){return numParticipants; }
 
@@ -124,6 +133,7 @@ public class EventInfo {
                 ", capacity=" + capacity +
                 ", hostId=" + hostId +
                 ", numParticipants=" + numParticipants +
+                ", hostName=" + hostName +
                 '}';
     }
 }

@@ -107,10 +107,11 @@
             timeZone: 'America/Los_Angeles'
           };
           // const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
-          html += "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
+          html += "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + "'>"
                   + "<div class=\"frame-20\">"
                   + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
                   + eventsArr[i].name + "</div>"
+                  + "</div>"
                   + "<div class=\"frame-2\">"
                   + "<div class=\"time montserrat-semi-bold-black-24px\">"
                   + eventsArr[i].time
@@ -152,40 +153,50 @@
             <script>
               const dateInput = document.querySelector('.date-picker');
               const monthValue = document.querySelector('#month');
-              const currentDay = document.querySelector('#currentDay');
-              const monthOptions = { month: "long" };
-              let currentDayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+              const monthOptions = { month: "long", timeZone: 'America/Los_Angeles' };
+              let currentDayOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'America/Los_Angeles' };
 
+              // sets initial date input value as current day
               dateInput.valueAsDate = new Date();
 
+              // stores the current day in local storage
               let prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
               window.localStorage.setItem("curr_date", dateInput.valueAsDate.toISOString().slice(0, 10));
               window.localStorage.setItem("curr_date_pretty", prettyCurrentDay);
+
+              // renders events on load
               getEvents();
 
+              // update month in the "Your <month> Plans" Div
               monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(dateInput.valueAsDate);
 
+              // event listener to update page when date input changes
               dateInput.addEventListener('change', (event) => {
                 const monthValue = document.querySelector('#month');
-                const currentDay = document.querySelector('#currentDay');
-                // increment the date
+
+                // fix timezone date errors from date input
                 let date = event.target.valueAsDate;
-                let incrementedDate = date.getDate() + 1;
+                date = new Date(
+                        date.getUTCFullYear(),
+                        date.getUTCMonth(),
+                        date.getUTCDate(),
+                        date.getUTCHours(),
+                        date.getUTCMinutes(),
+                        date.getUTCSeconds(),
+                        date.getUTCMilliseconds());
 
                 // format the month variable and the current date variable
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
-                prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(incrementedDate);
-                // currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
+                prettyCurrentDay = date.toLocaleDateString("en-US", currentDayOptions);
 
                 // update locally stored curr date
                 window.localStorage.setItem("curr_date", date.toISOString().slice(0, 10));
-                console.log(date.toISOString().slice(0, 10));
                 window.localStorage.setItem("curr_date_pretty", prettyCurrentDay);
 
                 // call event list builder
                 getEvents();
-
               });
+
             </script>
           </div>
           <div class="tab-bar">

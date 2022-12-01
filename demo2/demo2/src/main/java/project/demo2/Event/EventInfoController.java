@@ -44,10 +44,11 @@ public class EventInfoController {
         return es.getEventInfoByUserAndDate(username, date);
     }
 
-    @GetMapping(path = "register/{eventID}/{userID}")
-    public Boolean registerEvent(@PathVariable("eventID") Long id, @PathVariable("userID") Long userID){
-        es.registerEvent(id, userID);
-        return true;
+    @GetMapping(path = "register/{eventID}/{userName}")
+    public Boolean registerEvent(@PathVariable("eventID") Long id, @PathVariable("userName") String userName){
+        //es.registerEvent(id, userName);
+        //return true;
+        return es.registerEvent(id, userName);
     }
 
     @PostMapping(path="/CreateEvent")

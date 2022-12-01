@@ -59,6 +59,9 @@ public class UserInfoService {
 
 
     public List<EventInfo> UserEventsByNameCreated(String userName) {
-        return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
+
+        //return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
+        return eventRepository.findEventInfoByHostName(uiRepository.findUserInfoByName(userName).get().getUserName());
+
     }
 }

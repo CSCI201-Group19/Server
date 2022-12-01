@@ -15,8 +15,119 @@
     <link rel="stylesheet" type="text/css" href="/event-lists-page.css" />
     <link rel="stylesheet" type="text/css" href="/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="/globals.css" />
+    <script>
+      const getEventByCreator = async() =>{
+        const res = await fetch("http://localhost:8080/api/v1/UserInfo/fetchEventByUserCreate?userName="
+        +localStorage.getItem("username"));
+        const data = await res.json();
+        return data;
+      }
+
+      const getAllEvent = async() =>{
+        const res = await fetch("http://localhost:8080/api/v1/EventInfo");
+        const data = await res.json();
+        return data;
+      }
+      async function f1(){
+        let n="";
+        let t="";
+        let l="";
+        let c="";
+        let ca="";
+
+        var obj = await getEventByCreator();
+        if(obj.length>4){
+          document.getElementById("yy").style.overflowY="scroll" ;
+        }
+
+        for (let i = 0; i < obj.length; i++){
+          n=obj[i].name;
+          t=obj[i].time;
+          l=obj[i].location;
+          c=obj[i].category;
+          ca=obj[i].capacity;
+          document.getElementById("yy").innerHTML+=`<div class="event-listing">
+                <div class="flex-col montserrat-semi-bold-black-24px">
+                  <div class="overlap-group">
+                    <div class="rectangle-52"></div>
+                    <div class="event-xxx valign-text-middle">${n}</div>
+                  </div>
+                  <div class="time">${t}</div>
+                  <div class="location">${l}</div>
+                  <div class="category">${c}</div>
+                </div>
+                <div class="overlap-group-container">
+                  <div class="overlap-group-1">
+                    <div class="delete inter-semi-bold-white-13px">Delete</div>
+                  </div>
+                  <div class="overlap-group-2 montserrat-semi-bold-black-24px">
+                    <div class="capacity">Capacity:</div>
+                    <div class="xx-1">${ca}</div>
+                  </div>
+                </div>
+              </div><br>`;
+        }
+        var object = await getAllEvent();
+        if(object.length>4){
+          document.getElementById("ae").style.overflowY="scroll" ;
+        }
+        for(let i=0; i<object.length;i++){
+          document.getElementById("ae").innerHTML+=
+                  `<div class="event-register-listing">
+                <div class="frame-24">
+                  <div class="frame-20">
+                    <div class="event-name valign-text-middle montserrat-semi-bold-black-24px">
+                      ${object[i].name}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="time-1 montserrat-semi-bold-black-24px">
+                     ${object[i].time}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="location-1 montserrat-semi-bold-black-24px">
+                      ${object[i].location}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="category-1 montserrat-semi-bold-black-24px">
+                      ${object[i].category}
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-25">
+                  <div class="place valign-text-middle candal-normal-black-24px">
+                    <button style="background-color: Transparent; border:none;
+                    font-size:25px" onclick="f2(${object[i].id})">Register </button>
+
+                  </div>
+                </div>
+              </div><br>`;
+        }
+
+
+      }
+    </script>
+    <script>
+      const register = async(x) =>{
+        const res = await fetch("http://localhost:8080/api/v1/EventInfo/register/"+x+"/"+localStorage.getItem("username"));
+        const data = await res.text();
+        return data;
+      }
+      async function f2(x){
+        const rsp = await register(x);
+        if(rsp==="true"){
+          alert("Registration successful!");
+        }
+        else{
+          alert("Registration failed. You're already in it.");
+        }
+
+      }
+    </script>
   </head>
-  <body style="margin: 0">
+  <body style="margin: 0" onload="f1()">
     <script>
       window.theme = {
         primaryColor: "#1890ff",
@@ -68,41 +179,14 @@
       <div class="event-lists-page screen">
         <div class="overlap-group9">
           <div class="frame-container">
-            <div class="all-event-list">
+            <div  class="all-event-list">
               <div class="x-events candal-normal-white-36px">All Events</div>
-              <div class="event-register-listing">
-                <div class="frame-24">
-                  <div class="frame-20">
-                    <div
-                      class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                    >
-                      Event Name
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="time-1 montserrat-semi-bold-black-24px">
-                      Time
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="location-1 montserrat-semi-bold-black-24px">
-                      Location
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="category-1 montserrat-semi-bold-black-24px">
-                      Category
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-25">
-                  <div
-                    class="place valign-text-middle candal-normal-black-24px"
-                  >
-                    Register
-                  </div>
-                </div>
-              </div>
+              <div id = "ae"></div>
+
+
+
+
+<!--
               <div class="event-register-listing">
                 <div class="frame-24">
                   <div class="frame-20">
@@ -169,102 +253,20 @@
                   </div>
                 </div>
               </div>
-              <div class="event-register-listing">
-                <div class="frame-24">
-                  <div class="frame-20">
-                    <div
-                      class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                    >
-                      Event Name
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="time-4 montserrat-semi-bold-black-24px">
-                      Time
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="location-4 montserrat-semi-bold-black-24px">
-                      Location
-                    </div>
-                  </div>
-                  <div class="frame-2">
-                    <div class="category-4 montserrat-semi-bold-black-24px">
-                      Category
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-25">
-                  <div
-                    class="place valign-text-middle candal-normal-black-24px"
-                  >
-                    Register
-                  </div>
-                </div>
-              </div>
+              -->
             </div>
-            <div class="frame-14">
-              <div class="x-events candal-normal-white-36px">Your Events</div>
-              <div class="event-listing">
-                <div class="flex-col montserrat-semi-bold-black-24px">
-                  <div class="overlap-group">
-                    <div class="rectangle-52"></div>
-                    <div class="event-xxx valign-text-middle">Event xxx</div>
-                  </div>
-                  <div class="time">Time</div>
-                  <div class="location">Location</div>
-                  <div class="category">Category</div>
-                </div>
-                <div class="overlap-group-container">
-                  <div class="overlap-group-1">
-                    <div class="delete inter-semi-bold-white-13px">Delete</div>
-                  </div>
-                  <div class="overlap-group-2 montserrat-semi-bold-black-24px">
-                    <div class="capacity">Capacity:</div>
-                    <div class="xx">x/X</div>
-                  </div>
-                </div>
-              </div>
-              <div class="event-listing">
-                <div class="flex-col montserrat-semi-bold-black-24px">
-                  <div class="overlap-group">
-                    <div class="rectangle-52"></div>
-                    <div class="event-xxx valign-text-middle">Event xxx</div>
-                  </div>
-                  <div class="time">Time</div>
-                  <div class="location">Location</div>
-                  <div class="category">Category</div>
-                </div>
-                <div class="overlap-group-container">
-                  <div class="overlap-group-1">
-                    <div class="delete inter-semi-bold-white-13px">Delete</div>
-                  </div>
-                  <div class="overlap-group-2 montserrat-semi-bold-black-24px">
-                    <div class="capacity">Capacity:</div>
-                    <div class="xx-1">x/X</div>
-                  </div>
-                </div>
-              </div>
-              <div class="event-listing">
-                <div class="flex-col montserrat-semi-bold-black-24px">
-                  <div class="overlap-group">
-                    <div class="rectangle-52"></div>
-                    <div class="event-xxx valign-text-middle">Event xxx</div>
-                  </div>
-                  <div class="time">Time</div>
-                  <div class="location">Location</div>
-                  <div class="category">Category</div>
-                </div>
-                <div class="overlap-group-container">
-                  <div class="overlap-group-1">
-                    <div class="delete inter-semi-bold-white-13px">Delete</div>
-                  </div>
-                  <div class="overlap-group-2 montserrat-semi-bold-black-24px">
-                    <div class="capacity">Capacity:</div>
-                    <div class="xx-2">x/X</div>
-                  </div>
-                </div>
-              </div>
+
+
+
+
+            <div  class="frame-14">
+
+              <div  class="x-events candal-normal-white-36px">Events You've Created</div>
+              <div id = "yy"  ></div>
+
+
+
+
             </div>
           </div>
           <div class="tab-bar">
