@@ -57,7 +57,6 @@
           let eventDate = new Date(fullDateString);
           let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
           let dayString = eventDate.toLocaleDateString("en-US", eventDayOptions);
-
           let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
 
           document.getElementById("yy").innerHTML+=`<div class="event-listing">
