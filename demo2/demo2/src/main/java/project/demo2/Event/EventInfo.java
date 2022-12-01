@@ -26,6 +26,7 @@ public class EventInfo {
     private LocalTime time;
     private int capacity;
     private Long hostId;
+    private int numParticipants;
 
 
 
@@ -40,6 +41,7 @@ public class EventInfo {
         this.time = time;
         this.capacity = capacity;
         this.hostId = hostId;
+        this.numParticipants = 1;
     }
 
     public Long getId() {
@@ -106,6 +108,10 @@ public class EventInfo {
         this.hostId = hostId;
     }
 
+    public int getNumParticipants(){return numParticipants; }
+
+    public void setNumParticipants(int numParticipants){this.numParticipants = numParticipants; }
+
     @Override
     public String toString() {
         return "EventInfo{" +
@@ -117,6 +123,7 @@ public class EventInfo {
                 ", time=" + time +
                 ", capacity=" + capacity +
                 ", hostId=" + hostId +
+                ", numParticipants=" + numParticipants +
                 '}';
     }
 }
