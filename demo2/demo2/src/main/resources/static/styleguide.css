@@ -78,6 +78,14 @@
   font-weight: 400;
 }
 
+.candal-normal-black-48px {
+  color: var(--black);
+  font-family: var(--font-family-candal);
+  font-size: var(--font-size-xxl);
+  font-style: normal;
+  font-weight: 400;
+}
+
 .candal-normal-white-36px {
   color: var(--white);
   font-family: var(--font-family-candal);

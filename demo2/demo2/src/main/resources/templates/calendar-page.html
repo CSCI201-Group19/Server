@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
+    <!--<meta name=description content="Calendar Page for CSCI 201 Group Project"/>-->
     <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link
@@ -92,7 +92,8 @@
       async function buildEventsList(eventsArr) {
         // Populate character cards' HTML:
         let prettyDate = localStorage.getItem("curr_date_pretty");
-        let html = `<div class="place candal-normal-white-24px">
+        // Date Display at top of card
+        let html = `<div class="place candal-normal-white-36px">
                       <span id="currentDay">
                         ${prettyDate}
                       </span>
@@ -138,6 +139,12 @@
                     + "</div>"
                   + "</div><br>";
         }
+
+        if (eventsArr.length == 0) {
+          html += `<div class="place candal-normal-white-24px">
+                      You have no events today!
+                    </div>`
+        }
         // console.log(html);
         document.getElementById('daily-events-list').innerHTML = html;
 
@@ -149,7 +156,7 @@
         <div class="overlap-group">
           <div class="flex-row">
             <div class="flex-col">
-              <div class="your-monthly-plans valign-text-middle">
+              <div class="your-monthly-plans valign-text-middle candal-normal-black-48px">
                 Your <span id="month"></span> Plans
               </div>
               <div class="date-picker candal-normal-white-36px">

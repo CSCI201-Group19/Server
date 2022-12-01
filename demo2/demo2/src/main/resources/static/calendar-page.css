@@ -2,7 +2,6 @@
 
 .calendar-page {
   align-items: flex-start;
-  background: linear-gradient(180deg, rgb(172.13, 51.78, 51.78) 0%, rgb(242, 175, 41) 100%);
   background-color: rgba(255,255,255,1.0);
   background-image: url(/img/blur-overlay@1x.png);
   background-size: 100% 100%;
@@ -48,7 +47,7 @@
 
 .calendar-page .your-monthly-plans {
   color: var(--black);
-  font-family: var(--font-family-montserrat);
+  font-family: var(--font-family-candal);
   font-size: 60px;
   font-weight: 700;
   height: 274px;

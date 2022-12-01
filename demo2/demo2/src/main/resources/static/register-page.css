@@ -2,7 +2,6 @@
 
 .register-page {
   align-items: flex-start;
-  background: linear-gradient(180deg, rgb(172.13, 51.78, 51.78) 0%, rgb(242, 175, 41) 100%);
   background-color: rgba(255,255,255,1.0);
   background-image: url(/img/blur-overlay@1x.png);
   background-size: 100% 100%;
@@ -30,7 +29,7 @@
 .register-page .register-now {
   letter-spacing: 0;
   line-height: 48px;
-  margin-right: 26.0px;
+  margin-right: 26px;
   min-width: 353px;
   text-shadow: 8px 8px 30px #ac3333;
   white-space: nowrap;
@@ -206,7 +205,7 @@
   align-items: flex-start;
   cursor: pointer;
   display: flex;
-  margin-right: 26.0px;
+  margin-right: 26px;
   margin-top: 51px;
   min-width: 377px;
 }
