@@ -33,14 +33,32 @@
 
         let ca="";
 
+        const timeOptions = {
+          hour: 'numeric', minute: 'numeric',
+          hour12: true,
+          timeZone: 'America/Los_Angeles'
+        };
+        const eventDayOptions = {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'America/Los_Angeles'
+        };
 
         var obj = await getEventByCreator();
         if(obj.length>4){
           document.getElementById("yy").style.overflowY="scroll" ;
         }
+        console.log(obj);
 
         for (let i = 0; i < obj.length; i++){
           n=obj[i].name;
+          let fullDateString = obj[i].date + "T" + obj[i].time;
+          let eventDate = new Date(fullDateString);
+          let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
+          let dayString = eventDate.toLocaleDateString("en-US", eventDayOptions);
+
+          let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
 
           document.getElementById("yy").innerHTML+=`<div class="event-listing">
                 <div class="flex-col montserrat-semi-bold-black-24px">
@@ -50,12 +68,12 @@
                   </div>
                     <div class="frame-2">
                     <div class="time-1 montserrat-semi-bold-black-24px">
-                     ${obj[i].date}
+                     ${dayString}
                     </div>
                   </div>
                   <div class="frame-2">
                     <div class="time-1 montserrat-semi-bold-black-24px">
-                     ${obj[i].time}
+                     ${timeString}
                     </div>
                   </div>
                   <div class="frame-2">
@@ -78,16 +96,25 @@
                   </div>
                   <div class="overlap-group-2 montserrat-semi-bold-black-24px">
                     <div class="capacity">Capacity:</div>
-                    <div class="xx-1">${ca}</div>
+                    <div class="xx-1">${capacity}</div>
                   </div>
                 </div>
               </div><br>`;
         }
+
+
         var object = await getAllEvent();
         if(object.length>4){
           document.getElementById("ae").style.overflowY="scroll" ;
         }
+
         for(let i=0; i<object.length;i++){
+          // date and time formatting
+          let fullDateString = object[i].date + "T" + object[i].time;
+          let eventDate = new Date(fullDateString);
+          let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
+          let dayString = eventDate.toLocaleDateString("en-US", eventDayOptions);
+
           document.getElementById("ae").innerHTML+=
                   `<div class="event-register-listing">
                 <div class="frame-24">
@@ -98,12 +125,12 @@
                   </div>
                   <div class="frame-2">
                     <div class="time-1 montserrat-semi-bold-black-24px">
-                     ${object[i].date}
+                     ${dayString}
                     </div>
                   </div>
                   <div class="frame-2">
                     <div class="time-1 montserrat-semi-bold-black-24px">
-                     ${object[i].time}
+                     ${timeString}
                     </div>
                   </div>
                   <div class="frame-2">
