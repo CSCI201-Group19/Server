@@ -1,5 +1,6 @@
 package project.demo2.User;
 
+import jdk.jfr.Event;
 import project.demo2.Event.EventInfo;
 
 import javax.persistence.*;
