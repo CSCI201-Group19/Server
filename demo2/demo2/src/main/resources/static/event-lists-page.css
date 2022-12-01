@@ -113,32 +113,12 @@
   position: relative;
 }
 
-.event-lists-page .time-1 {
+.event-lists-page .event-attribute {
   left: 5px;
   letter-spacing: 0;
   line-height: 24px;
   position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 245px;
-}
-
-.event-lists-page .location-1 {
-  left: 5px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 245px;
-}
-
-.event-lists-page .category-1 {
-  left: 5px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
+  top: 2px;
   white-space: nowrap;
   width: 245px;
 }
@@ -147,6 +127,7 @@
   background-color: var(--fuel-yellow);
   border: 1px none;
   border-radius: 20px;
+  box-shadow: 4px 4px 4px #00000040;
   display: flex;
   height: 53px;
   min-width: 142px;
@@ -157,10 +138,10 @@
   height: 24px;
   letter-spacing: 0;
   line-height: 24px;
-  margin-left: 15px;
-  margin-top: 15px;
+  margin-left: 10px;
+  margin-top: 14px;
   white-space: nowrap;
-  width: 113px;
+  width: 140px;
 }
 
 .event-lists-page .frame-15 {
@@ -215,7 +196,8 @@
   display: flex;
   flex-direction: column;
   left: 17px;
-  min-height: 139px;
+  gap: 2px;
+  min-height: 145px;
   position: absolute;
   top: 11px;
   width: 274px;
@@ -237,30 +219,6 @@
   top: 0;
   white-space: nowrap;
   width: 218px;
-}
-
-.event-lists-page .time {
-  letter-spacing: 0;
-  line-height: 24px;
-  margin-top: 10px;
-  min-height: 28px;
-  white-space: nowrap;
-  width: 256px;
-}
-
-.event-lists-page .location {
-  letter-spacing: 0;
-  line-height: 24px;
-  margin-top: 6px;
-  min-height: 34px;
-  width: 256px;
-}
-
-.event-lists-page .category {
-  letter-spacing: 0;
-  line-height: 24px;
-  min-height: 34px;
-  width: 256px;
 }
 
 .event-lists-page .overlap-group-container {
@@ -296,17 +254,20 @@
 }
 
 .event-lists-page .overlap-group-2 {
+  background-color: var(--fuel-yellow);
+  border: 1px none;
+  border-radius: 20px;
   height: 89px;
   position: relative;
   width: 146px;
 }
 
 .event-lists-page .capacity {
-  left: 0;
+  left: 15px;
   letter-spacing: 0;
   line-height: 24px;
   position: absolute;
-  top: 0;
+  top: 15px;
   width: 146px;
 }
 
