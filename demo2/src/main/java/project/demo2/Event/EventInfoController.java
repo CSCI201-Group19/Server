@@ -3,6 +3,7 @@ package project.demo2.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,13 @@ public class EventInfoController {
     @GetMapping(path = "User/{id}")
     public List<EventInfo> getEventInfoByUser(@PathVariable("id") Long id){
         return es.getEventInfoByUser(id);
+    }
+
+    @GetMapping(path = "User/{username}/{date}")
+    public List<EventInfo> getEventInfoByUserAndDate(@PathVariable("username") String username,
+                                                     @PathVariable("date") String dateString){
+        LocalDate date = LocalDate.parse(dateString);
+        return es.getEventInfoByUserAndDate(username, date);
     }
 
     @GetMapping(path = "register/{eventID}/{userID}")

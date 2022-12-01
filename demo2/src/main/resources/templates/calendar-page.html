@@ -56,6 +56,60 @@
           borderRadius: 4,
         },
       };
+
+      const eventsListContainer = document.getElementById('daily-events-list');
+
+      async function getEvents() {
+        // Fetch API data:
+        const date = localStorage.getItem("curr_date");
+        const username = window.localStorage.getItem('username').toLowerCase();
+        const eventsURL = "http://localhost:8080/api/v1/UserInfo/fetchEventByDateUser?date=" +
+                            date + "&userName=" + username;
+
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", eventsURL, true );
+        xmlHttp.send( null );
+        return JSON.parse(xmlHttp.responseText);
+      }
+
+      async function buildEventsList() {
+        const eventsArr = await getEvents();
+        // Populate character cards' HTML:
+        eventsListContainer.innerHTML +=
+                "<div class=\"place candal-normal-white-24px\"><span id=\"currentDay\"></span></div>"
+        for (let i = 0; i < eventsArr.length; i++) {
+          // Populate event list
+          const eventDate = new Date(eventsArr[i].time);
+          const eventListOptions = {
+            month: 'long', day: 'numeric',
+            hour: 'numeric', minute: 'numeric',
+            hour12: true,
+            timeZone: 'America/Los_Angeles'
+          };
+          const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
+          eventsListContainer.innerHTML +=
+                  "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
+                  + "<div class=\"frame-20\">"
+                  + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
+                  + eventsArr[i].name + "</div>"
+                  + "<div class=\"frame-2\">"
+                  + "<div class=\"time montserrat-semi-bold-black-24px\">"
+                  + formattedDateString
+                  + "</div>"
+                  + "<div class=\"frame-2\">"
+                  + "<div class=\"location monstserrat-semi-bold-black-24px\">"
+                  + eventsArr[i].location
+                  + "</div>"
+                  + "</div>"
+                  + "<div class=\"frame-2\">"
+                  + "<div class=\"category monstserrat-semi-bold-black-24px\">"
+                  + eventsArr[i].category
+                  + "</div>"
+                  + "</div>"
+                  + "</div>"
+        }
+
+      }
     </script>
     <input type="hidden" id="anPageName" name="page" value="calendar-page" />
     <div class="container-center-horizontal">
@@ -72,96 +126,7 @@
               </div>
             </div>
             <div class="events-on-day" id="daily-events-list">
-              <div class="place candal-normal-white-36px"><span id="currentDay"></span></div>
-              <!-- this part needs to be dynamically loaded from API -->
-              <div class="users-event">
-                <div class="frame-20">
-                  <div
-                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                  >
-                    Event Name
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="time montserrat-semi-bold-black-24px">Time</div>
-                </div>
-                <div class="frame-2">
-                  <div class="location montserrat-semi-bold-black-24px">
-                    Location
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="category montserrat-semi-bold-black-24px">
-                    Category
-                  </div>
-                </div>
-              </div>
-              <div class="users-event">
-                <div class="frame-20">
-                  <div
-                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                  >
-                    Event Name
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="time-1 montserrat-semi-bold-black-24px">Time</div>
-                </div>
-                <div class="frame-2">
-                  <div class="location-1 montserrat-semi-bold-black-24px">
-                    Location
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="category-1 montserrat-semi-bold-black-24px">
-                    Category
-                  </div>
-                </div>
-              </div>
-              <div class="users-event">
-                <div class="frame-20">
-                  <div
-                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                  >
-                    Event Name
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="time-2 montserrat-semi-bold-black-24px">Time</div>
-                </div>
-                <div class="frame-2">
-                  <div class="location-2 montserrat-semi-bold-black-24px">
-                    Location
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="category-2 montserrat-semi-bold-black-24px">
-                    Category
-                  </div>
-                </div>
-              </div>
-              <div class="users-event">
-                <div class="frame-20">
-                  <div
-                    class="event-name valign-text-middle montserrat-semi-bold-black-24px"
-                  >
-                    Event Name
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="time-3 montserrat-semi-bold-black-24px">Time</div>
-                </div>
-                <div class="frame-2">
-                  <div class="location-3 montserrat-semi-bold-black-24px">
-                    Location
-                  </div>
-                </div>
-                <div class="frame-2">
-                  <div class="category-3 montserrat-semi-bold-black-24px">
-                    Category
-                  </div>
-                </div>
-              </div>
+
             </div>
             <script>
               const dateInput = document.querySelector('.date-picker');
@@ -171,8 +136,14 @@
               let currentDayOptions = { weekday: 'long', month: 'long', day: 'numeric' };
 
               dateInput.valueAsDate = new Date();
+
+              window.localStorage.setItem("curr_date", dateInput.valueAsDate.toISOString().slice(0, 10));
+              buildEventsList();
+
               monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(dateInput.valueAsDate);
               currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
+
+
 
               dateInput.addEventListener('change', (event) => {
                 const monthValue = document.querySelector('#month');
@@ -185,8 +156,11 @@
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
                 currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
 
-                // call
+                // update locally stored curr date
+                window.localStorage.setItem("curr_date", date.toISOString().slice(0, 10));
 
+                // call event list builder
+                buildEventsList();
 
               });
             </script>

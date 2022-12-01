@@ -42,9 +42,16 @@ public class UserInfoController {
     }
 
     @GetMapping(path = "/fetchEventByDateUser")
-    public List<EventInfo> fetchEvent(@RequestParam LocalDate date, Long id){
-        return uiService.UserEvents(date, id);
+    public List<EventInfo> fetchEvent(@RequestParam LocalDate date, String userName){
+        return uiService.UserEvents(date, userName);
 
     }
+
+    @GetMapping(path = "/fetchEventByUserCreate")
+    public List<EventInfo> fetchEventCreated(@RequestParam String userName){
+        return uiService.UserEventsByNameCreated(userName);
+
+    }
+
 
 }
