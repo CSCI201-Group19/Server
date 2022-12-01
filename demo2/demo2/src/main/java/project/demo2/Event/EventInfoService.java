@@ -42,6 +42,23 @@ public class EventInfoService {
         return eventInfos;
     }
 
+    public List<EventInfo> getEventInfoByUserAndDate(String name, LocalDate date){
+        Optional<UserInfo> userInfo = uiRepository.findUserInfoByName(name);
+        if (!userInfo.isPresent()){
+            throw new IllegalStateException("The user does not exist");
+        }
+        List<EventRegistration> eventRegistrations = erRepository.findEventRegistrationByUser(userInfo.get());
+        List<EventInfo> eventInfos = new ArrayList<EventInfo>();
+        for (EventRegistration er: eventRegistrations){
+            Optional<EventInfo> ei = eiRepository.findEventInfoById(er.getEvent().getId());
+            if (ei.isPresent()){
+                if (ei.get().getDate().equals(date))
+                    eventInfos.add(ei.get());
+            }
+        }
+        return eventInfos;
+    }
+
     public List<EventInfo> getEventInfoCreatedByUser(Long id) {
         return eiRepository.findEventInfoByHostID(id);
     }
