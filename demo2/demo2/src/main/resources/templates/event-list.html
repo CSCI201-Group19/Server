@@ -30,10 +30,9 @@
       }
       async function f1(){
         let n="";
-        let t="";
-        let l="";
-        let c="";
+
         let ca="";
+
 
         var obj = await getEventByCreator();
         if(obj.length>4){
@@ -42,19 +41,36 @@
 
         for (let i = 0; i < obj.length; i++){
           n=obj[i].name;
-          t=obj[i].time;
-          l=obj[i].location;
-          c=obj[i].category;
-          ca=obj[i].capacity;
+
           document.getElementById("yy").innerHTML+=`<div class="event-listing">
                 <div class="flex-col montserrat-semi-bold-black-24px">
                   <div class="overlap-group">
                     <div class="rectangle-52"></div>
                     <div class="event-xxx valign-text-middle">${n}</div>
                   </div>
-                  <div class="time">${t}</div>
-                  <div class="location">${l}</div>
-                  <div class="category">${c}</div>
+                    <div class="frame-2">
+                    <div class="time-1 montserrat-semi-bold-black-24px">
+                     ${obj[i].date}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="time-1 montserrat-semi-bold-black-24px">
+                     ${obj[i].time}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="location-1 montserrat-semi-bold-black-24px">
+                      ${obj[i].location}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="category-1 montserrat-semi-bold-black-24px">
+                      ${obj[i].category}
+                    </div>
+                  </div>
+
+
+
                 </div>
                 <div class="overlap-group-container">
                   <div class="overlap-group-1">
@@ -78,6 +94,11 @@
                   <div class="frame-20">
                     <div class="event-name valign-text-middle montserrat-semi-bold-black-24px">
                       ${object[i].name}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="time-1 montserrat-semi-bold-black-24px">
+                     ${object[i].date}
                     </div>
                   </div>
                   <div class="frame-2">
