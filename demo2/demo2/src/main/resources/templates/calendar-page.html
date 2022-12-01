@@ -57,16 +57,13 @@
         },
       };
 
-      const eventsListContainer = document.getElementById('daily-events-list');
-
       async function getEvents() {
         // Fetch API data:
         const date = localStorage.getItem("curr_date");
         const username = window.localStorage.getItem('username');
         const eventsURL = "http://localhost:8080/api/v1/EventInfo/User/" + username + "/" + date;
-        console.log(eventsURL);
-        // const eventsURL = "http://localhost:8080/api/v1/EventInfo";
-        //DEBUG WITH ALL EVENTS: http://localhost:8080/api/v1/EventInfo
+        // console.log(eventsURL);
+
 
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.open("GET", eventsURL, true);
@@ -78,7 +75,7 @@
             if (xmlHttp.status === 200) {
               try {
                 parsedResponse = JSON.parse(xmlHttp.responseText);
-                console.log(parsedResponse);
+                // console.log(parsedResponse);
                 buildEventsList(parsedResponse);
               } catch (err) {
                 // 👇️ SyntaxError: Unexpected end of JSON input
@@ -93,44 +90,56 @@
       }
 
       async function buildEventsList(eventsArr) {
-        console.log(eventsArr.length);
         // Populate character cards' HTML:
         let prettyDate = localStorage.getItem("curr_date_pretty");
-        let html = "<div class=\"place candal-normal-white-24px\"><span id=\"currentDay\">" + prettyDate + "</span></div>";
+        let html = `<div class="place candal-normal-white-24px">
+                      <span id="currentDay">
+                        ${prettyDate}
+                      </span>
+                    </div>`;
+
+        // set div to scroll if necessary
+        if(eventsArr.length>4){
+          document.getElementById("daily-events-list").style.overflowY="scroll" ;
+        }
+
         for (let i = 0; i < eventsArr.length; i++) {
           // Populate event list
           // const eventDate = new Date(eventsArr[i].time);
           const eventListOptions = {
-            month: 'long', day: 'numeric',
             hour: 'numeric', minute: 'numeric',
             hour12: true,
             timeZone: 'America/Los_Angeles'
           };
-          // const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
+          let fullDateString = eventsArr[i].date + "T" + eventsArr[i].time;
+          let eventDate = new Date(fullDateString);
+          let timeString = eventDate.toLocaleTimeString("en-US", eventListOptions);
+
           html += "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + "'>"
-                    + "<div class=\"frame-20\">"
+                    + "<div class=\"event-name-bar\">"
                       + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
                             + eventsArr[i].name
                       + "</div>"
                     + "</div>"
                     + "<div class=\"frame-2\">"
                       + "<div class=\"time montserrat-semi-bold-black-24px\">"
-                          + eventsArr[i].time
+                          + "Time: " + timeString
                       + "</div>"
+                    + "</div>"
                     + "<div class=\"frame-2\">"
                       + "<div class=\"location montserrat-semi-bold-black-24px\">"
-                          + eventsArr[i].location
+                          + "Located @ " + eventsArr[i].location
                       + "</div>"
                     + "</div>"
                     + "<div class=\"frame-2\">"
                       + "<div class=\"category montserrat-semi-bold-black-24px\">"
-                          + eventsArr[i].category
+                          + "Category: " + eventsArr[i].category
                       + "</div>"
                     + "</div>"
-                  + "</div>";
+                  + "</div><br>";
         }
-        console.log(html);
-        document.getElementById('daily-events-list').innerHTML = html;
+        // console.log(html);
+        document.getElementById('daily-events-list').innerHTML += html;
 
       }
     </script>

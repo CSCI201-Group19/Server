@@ -74,7 +74,7 @@
   display: flex;
   flex-direction: column;
   height: 831px;
-  justify-content: start;
+  gap : 10px;
   padding: 20px 40px;
   width: 598px;
 }
@@ -100,13 +100,13 @@
   padding: 11px 16px;
 }
 
-.calendar-page .frame-20 {
+.calendar-page .event-name-bar {
   align-self: stretch;
   background-color: var(--fuel-yellow);
   border: 1px none;
   border-radius: 20px;
-  height: 34.25px;
-  min-width: 486px;
+  height: 35px;
+  min-width: 450px;
   overflow: hidden;
   position: relative;
 }
