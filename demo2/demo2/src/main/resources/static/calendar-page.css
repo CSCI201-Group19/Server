@@ -74,7 +74,7 @@
   display: flex;
   flex-direction: column;
   height: 831px;
-  justify-content: space-between;
+  justify-content: start;
   padding: 20px 40px;
   width: 598px;
 }
@@ -96,7 +96,7 @@
   display: flex;
   flex-direction: column;
   height: 168px;
-  justify-content: space-between;
+  justify-content: start;
   padding: 11px 16px;
 }
 
@@ -128,13 +128,14 @@
   height: 35px;
   min-width: 486px;
   position: relative;
+  padding: 8px 0px;
 }
 
 .calendar-page .time {
   left: 8px;
   letter-spacing: 0;
   line-height: 24px;
-  position: absolute;
+  position: relative;
   top: 0;
   white-space: nowrap;
   width: 425px;
@@ -144,7 +145,7 @@
   left: 8px;
   letter-spacing: 0;
   line-height: 24px;
-  position: absolute;
+  position: relative;
   top: 0;
   white-space: nowrap;
   width: 425px;
@@ -154,97 +155,7 @@
   left: 8px;
   letter-spacing: 0;
   line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .time-1 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .location-1 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .category-1 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .time-2 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .location-2 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .category-2 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .time-3 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .location-3 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
-  top: 0;
-  white-space: nowrap;
-  width: 425px;
-}
-
-.calendar-page .category-3 {
-  left: 8px;
-  letter-spacing: 0;
-  line-height: 24px;
-  position: absolute;
+  position: relative;
   top: 0;
   white-space: nowrap;
   width: 425px;

@@ -108,24 +108,25 @@
           };
           // const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
           html += "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + "'>"
-                  + "<div class=\"frame-20\">"
-                  + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
-                  + eventsArr[i].name + "</div>"
-                  + "</div>"
-                  + "<div class=\"frame-2\">"
-                  + "<div class=\"time montserrat-semi-bold-black-24px\">"
-                  + eventsArr[i].time
-                  + "</div>"
-                  + "<div class=\"frame-2\">"
-                  + "<div class=\"location monstserrat-semi-bold-black-24px\">"
-                  + eventsArr[i].location
-                  + "</div>"
-                  + "</div>"
-                  + "<div class=\"frame-2\">"
-                  + "<div class=\"category monstserrat-semi-bold-black-24px\">"
-                  + eventsArr[i].category
-                  + "</div>"
-                  + "</div>"
+                    + "<div class=\"frame-20\">"
+                      + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
+                            + eventsArr[i].name
+                      + "</div>"
+                    + "</div>"
+                    + "<div class=\"frame-2\">"
+                      + "<div class=\"time montserrat-semi-bold-black-24px\">"
+                          + eventsArr[i].time
+                      + "</div>"
+                    + "<div class=\"frame-2\">"
+                      + "<div class=\"location montserrat-semi-bold-black-24px\">"
+                          + eventsArr[i].location
+                      + "</div>"
+                    + "</div>"
+                    + "<div class=\"frame-2\">"
+                      + "<div class=\"category montserrat-semi-bold-black-24px\">"
+                          + eventsArr[i].category
+                      + "</div>"
+                    + "</div>"
                   + "</div>";
         }
         console.log(html);
