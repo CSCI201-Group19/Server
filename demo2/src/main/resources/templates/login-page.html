@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
+    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" type="text/css" href="/login-page.css" />
+    <link rel="stylesheet" type="text/css" href="/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="/globals.css" />
+  </head>
+  <body style="margin: 0">
+    <script>
+      window.theme = {
+        primaryColor: "#1890ff",
+        secondaryColor: "#1890ff",
+        successColor: "#52c41a",
+        warningColor: "#faad14",
+        errorColor: "#f5222d",
+      };
+      window.globalTheme = {
+        palette: {
+          primary: {
+            main: "#1976d2",
+          },
+          secondary: {
+            main: "#9c27b0",
+          },
+          error: {
+            main: "#d32f2f",
+          },
+          warning: {
+            main: "#ed6c02",
+          },
+          info: {
+            main: "#0288d1",
+          },
+          success: {
+            main: "#2e7d32",
+          },
+          text: {
+            primary: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontSize: 14,
+        },
+        shape: {
+          borderRadius: 4,
+        },
+      };
+      const handleSubmit = async function (event) {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        const res = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/login?userName=" +
+            username +
+            "&password=" +
+            password
+        );
+        let obj = await res.text();
+        if (obj == "false") {
+          alert("Incorrect Username or Password");
+        } else {
+          window.localStorage.setItem("username", username);
+          window.localStorage.setItem("password", password);
+          window.location.href = "/calendar";
+        }
+      };
+    </script>
+
+    <div class="container-center-horizontal">
+      <div class="login-page screen" name="form1" action="form1" method="post">
+        <div class="usc-event-organizer montserrat-bold-white-48px">
+          USC Event Organizer
+        </div>
+        <div class="overlap-group-2 candal-normal-white-24px">
+          <label class="username" for="username">Username</label>
+          <div class="overlap-group">
+            <input
+              class="enter-username montserrat-normal-black-21px"
+              name="username"
+              id="username"
+              placeholder="Enter username"
+              type="text"
+              required
+            />
+          </div>
+          <label class="password" for="password">Password</label>
+          <div class="overlap-group">
+            <input
+              class="enter-password montserrat-normal-black-21px"
+              name="password"
+              id="password"
+              placeholder="Enter password"
+              type="password"
+              required
+            />
+          </div>
+          <button onclick="handleSubmit()" class="button" style="background: transparent;border-color: transparent">
+            <img class="vector" src="img/vector-13@2x.png" alt="Vector" />
+          </button>
+        </div>
+        <div class="overlap-group-container">
+          <div class="overlap-group-1">
+            <a href="/register">
+              <div class="rectangle-4">
+                <div
+                  class="place valign-text-middle candal-normal-white-24px"
+                  style="user-select: none"
+                >
+                  Register
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="overlap-group-1">
+            <a href="/guest"
+              ><div class="rectangle-4">
+                <div
+                  class="guest-page valign-text-middle candal-normal-white-24px"
+                >
+                  Guest Page
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

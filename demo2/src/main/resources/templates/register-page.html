@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
+    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" type="text/css" href="/register-page.css" />
+    <link rel="stylesheet" type="text/css" href="/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="/globals.css" />
+  </head>
+  <body style="margin: 0">
+    <script>
+      window.theme = {
+        primaryColor: "#1890ff",
+        secondaryColor: "#1890ff",
+        successColor: "#52c41a",
+        warningColor: "#faad14",
+        errorColor: "#f5222d",
+      };
+      window.globalTheme = {
+        palette: {
+          primary: {
+            main: "#1976d2",
+          },
+          secondary: {
+            main: "#9c27b0",
+          },
+          error: {
+            main: "#d32f2f",
+          },
+          warning: {
+            main: "#ed6c02",
+          },
+          info: {
+            main: "#0288d1",
+          },
+          success: {
+            main: "#2e7d32",
+          },
+          text: {
+            primary: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontSize: 14,
+        },
+        shape: {
+          borderRadius: 4,
+        },
+      };
+      const signup = async () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmpassword =
+          document.getElementById("confirmpassword").value;
+        const userName = document.getElementById("username").value;
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+
+        if (password !== confirmpassword) {
+          alert("Password and Confirm Password does not match!");
+          return;
+        }
+
+        const data = {
+          email,
+          password,
+          userName,
+          firstName,
+          lastName,
+        };
+
+        const response = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/signup",
+          {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            body: JSON.stringify(data),
+          }
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            if (data === true) {
+              window.localStorage.setItem("username", userName);
+              window.localStorage.setItem("password", password);
+              window.location.href = "/calendar";
+            } else {
+              alert("Cannot Sign Up. Check if Username or Email is taken.");
+            }
+          });
+      };
+    </script>
+    <input type="hidden" id="anPageName" name="page" value="register-page" />
+    <div class="container-center-horizontal">
+      <div class="register-page screen">
+        <div class="overlap-group1">
+          <div class="register-now montserrat-bold-white-48px">
+            Register Now!
+          </div>
+          <div class="overlap-group-container candal-normal-white-24px">
+            <div class="overlap-group">
+              <label for="email" class="email">Email*</label>
+              <div class="overlap-group-1">
+                <input
+                  class="enter-your-email montserrat-normal-black-21px"
+                  name="email"
+                  id="email"
+                  placeholder="Enter username"
+                  type="text"
+                  required
+                />
+              </div>
+              <label for="password" class="password">Password*</label>
+              <div class="overlap-group-1">
+                <input
+                  class="create-a-password montserrat-normal-black-21px"
+                  name="password"
+                  id="password"
+                  placeholder="Enter password"
+                  type="password"
+                  required
+                />
+              </div>
+              <label for="confirmpassword" class="confirm-password">
+                Confirm Password*
+              </label>
+              <div class="overlap-group-1">
+                <input
+                  class="re-enter-password montserrat-normal-black-21px"
+                  name="confirmpassword"
+                  id="confirmpassword"
+                  placeholder="Re-enter password"
+                  type="password"
+                  required
+                />
+              </div>
+            </div>
+            <div class="overlap-group">
+              <label for="username" class="username">Username*</label>
+              <div class="overlap-group-1">
+                <input
+                  class="create-a-username montserrat-normal-black-21px"
+                  name="username"
+                  id="username"
+                  placeholder="Create a username"
+                  type="text"
+                  required
+                />
+              </div>
+              <label for="firstName" class="first-name">First Name*</label>
+              <div class="overlap-group-1">
+                <input
+                  class="enter-first-name montserrat-normal-black-21px"
+                  name="firstName"
+                  id="firstName"
+                  placeholder="Enter first name"
+                  type="password"
+                  required
+                />
+              </div>
+              <label for="lastName" class="last-name">Last Name*</label>
+              <div class="overlap-group-1">
+                <input
+                  class="enter-last-name montserrat-normal-black-21px"
+                  name="lastName"
+                  id="lastName"
+                  placeholder="Enter last name"
+                  type="password"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="group-26">
+            <button onclick="signup()">
+              <div class="overlap-group-2">
+                <div class="rectangle-47">
+                  <div
+                    class="sign-up valign-text-middle candal-normal-white-24px"
+                  >
+                    Sign up
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

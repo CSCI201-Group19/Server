@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+    async function f1() {
+        let username =  document.getElementById("name").value;
+        let password =  document.getElementById("password").value;
+        const res = await fetch("http://localhost:8080/api/v1/UserInfo/login?userName="+username+"&password="+password)
+        let obj = await res.text();
+        if(obj=="false"){
+            alert("Incorrect Username or Password")
+        }
+        else {
+            location.replace("https://www.w3schools.com");
+        }
+    }
+    function f2(){
+        location.replace("https://www.w3schools.com");
+    }
+</script>
+<style>
+    .textbox
+    {
+        height:30px;
+        width:40%;
+        font-size:14pt;
+    }
+    .button{
+        height:30px;
+        width:7%;
+        font-size:14pt;
+    }
+</style>
+<h1 style="font-size:80px; text-align: center; padding-top: 10px; color: brown">Event Organizer</h1>
+<form action="javascript:void(0);" onsubmit="f1()">
+    <div style="text-align: center">
+        <label for="name" style="padding-right:450px; font-size: 20pt"><b>Username</b></label><br>
+        <input class="textbox" type="text" id="name" name="userName" placeholder="Enter Username" required><br>
+        <label for="password" style="padding-right:458px; font-size: 20pt"><b>password</b></label><br>
+        <input class="textbox" type="password" id="password" name="password" placeholder="Enter Password" required><br>
+
+        <input class="but" type="submit" value="Login" style="margin-right:30px; margin-top: 20px">
+        <input class="but" type="button" value="Guest" onclick="f2()">
+    </div>
+</form>
+
+</body>
+</html>
