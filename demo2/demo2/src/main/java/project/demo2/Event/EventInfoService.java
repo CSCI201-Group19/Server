@@ -110,13 +110,13 @@ public class EventInfoService {
 
 
             Optional<EventRegistration> er = erRepository.findEventRegistrationByUserAndEvent(ui.get(), ei.get());
-            List<EventRegistration> registrations = erRepository.findEventRegistrationByUser(ui.get());
             if (er.isPresent()) {
                 throw new IllegalStateException("User with id " + userName + " is already registered the event with id " + id);
-            } else if (registrations.size() >= eiRepository.getReferenceById(id).getCapacity()) {
+            } else if (ei.get().getNumParticipants() >= eiRepository.getReferenceById(id).getCapacity()) {
                 throw new IllegalStateException("Event with id  " + id + " is already full");
             } else {
                 erRepository.save(new EventRegistration(ui.get(), ei.get()));
+                ei.get().setNumParticipants(ei.get().getNumParticipants()+1); //add 1 to event's number of participants
             }
         }
         catch(IllegalStateException ie){
@@ -135,6 +135,7 @@ public class EventInfoService {
         Optional<EventRegistration> er = erRepository.findEventRegistrationByUserAndEvent(ui.get(), ei.get());
         if (er.isPresent()) {
             erRepository.delete(er.get());
+            ei.get().setNumParticipants(ei.get().getNumParticipants()-1);
         } else {
             throw new IllegalStateException("User with id " + userId + " is not registered the event with id " + id);
         }
