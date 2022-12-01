@@ -46,7 +46,7 @@
   width: 491px;
 }
 
-.calendar-page .your-february-plans {
+.calendar-page .your-monthly-plans {
   color: var(--black);
   font-family: var(--font-family-montserrat);
   font-size: 60px;
@@ -58,10 +58,14 @@
 }
 
 .calendar-page .date-picker {
-  height: 108px;
+  height: 200px;
+  letter-spacing: 0;
+  line-height: 36px;
+  margin-top: -1.00px;
+  white-space: nowrap;
 }
 
-.calendar-page .frame-15 {
+.calendar-page .events-on-day {
   align-items: flex-start;
   background-color: var(--alto-3);
   border: 1px none;

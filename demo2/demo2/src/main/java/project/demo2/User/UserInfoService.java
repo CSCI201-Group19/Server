@@ -49,15 +49,16 @@ public class UserInfoService {
         return null;
     }
 
-    public List<EventInfo> UserEvents(LocalDate date, Long id) {
+    public List<EventInfo> UserEvents(LocalDate date, String userName) {
+        Optional<UserInfo> ui = uiRepository.findUserInfoByName(userName);
+        Long id = ui.get().getId();
         List<EventInfo> temp = eventRepository.findEventInfoByHostID(id);
-        List<EventInfo> returnV = new ArrayList<EventInfo>();
-        for(int i=1; i<temp.size();i++){
-            if(temp.get(i).getDate().equals(date))
-                returnV.add(temp.get(i));
-        }
-        return returnV;
+        return temp;
+
+    }
 
 
+    public List<EventInfo> UserEventsByNameCreated(String userName) {
+        return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
     }
 }

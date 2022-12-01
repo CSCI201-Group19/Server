@@ -57,7 +57,6 @@
         },
       };
       const handleSubmit = async function (event) {
-        alert("hello");
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
         const res = await fetch(
@@ -105,7 +104,7 @@
               required
             />
           </div>
-          <button onclick="handleSubmit()">
+          <button onclick="handleSubmit()" class="button" style="background: transparent;border-color: transparent">
             <img class="vector" src="img/vector-13@2x.png" alt="Vector" />
           </button>
         </div>
