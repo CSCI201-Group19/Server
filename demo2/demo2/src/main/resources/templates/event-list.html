@@ -98,7 +98,8 @@
                 </div>
                 <div class="frame-25">
                   <div class="place valign-text-middle candal-normal-black-24px">
-                    <button style="background-color: Transparent; border:none; font-size:20px" onclick="f2()">Register </button>
+                    <button style="background-color: Transparent; border:none;
+                    font-size:25px" onclick="f2(${object[i].id})">Register </button>
 
                   </div>
                 </div>
@@ -109,8 +110,20 @@
       }
     </script>
     <script>
-      async function f2(){
-        alert("ok");
+      const register = async(x) =>{
+        const res = await fetch("http://localhost:8080/api/v1/EventInfo/register/"+x+"/"+localStorage.getItem("username"));
+        const data = await res.text();
+        return data;
+      }
+      async function f2(x){
+        const rsp = await register(x);
+        if(rsp==="true"){
+          alert("Registration successful!");
+        }
+        else{
+          alert("Registration failed. You're already in it.");
+        }
+
       }
     </script>
   </head>

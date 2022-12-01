@@ -97,26 +97,31 @@ public class EventInfoService {
             throw new IllegalStateException("Not allowed to modify the event");
     }
 
-    public void registerEvent(Long id, Long userId) {
-        Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
-        Optional<UserInfo> ui = uiRepository.findUserInfoById(userId);
-        if (!ei.isPresent())
-            throw new IllegalStateException("Event with id " + id + " does not exist.");
-        if (!ui.isPresent())
-            throw new IllegalStateException("User with id " + userId + " does not exist.");
+    //public void registerEvent(Long id, String userName) {
+    public Boolean registerEvent(Long id, String userName) {
+        //Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
+        try {
+            Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
+            Optional<UserInfo> ui = uiRepository.findUserInfoByName(userName);
+            if (!ei.isPresent())
+                throw new IllegalStateException("Event with id " + id + " does not exist.");
+            if (!ui.isPresent())
+                throw new IllegalStateException("User with id " + userName + " does not exist.");
 
 
-        Optional<EventRegistration> er = erRepository.findEventRegistrationByUserAndEvent(ui.get(), ei.get());
-        List<EventRegistration> registrations = erRepository.findEventRegistrationByUser(ui.get());
-        if (er.isPresent()) {
-            throw new IllegalStateException("User with id " + userId + " is already registered the event with id " + id);
+            Optional<EventRegistration> er = erRepository.findEventRegistrationByUserAndEvent(ui.get(), ei.get());
+            List<EventRegistration> registrations = erRepository.findEventRegistrationByUser(ui.get());
+            if (er.isPresent()) {
+                throw new IllegalStateException("User with id " + userName + " is already registered the event with id " + id);
+            } else if (registrations.size() >= eiRepository.getReferenceById(id).getCapacity()) {
+                throw new IllegalStateException("Event with id  " + id + " is already full");
+            } else {
+                erRepository.save(new EventRegistration(ui.get(), ei.get()));
+            }
         }
-        else if (registrations.size() >= eiRepository.getReferenceById(id).getCapacity()){
-            throw new IllegalStateException("Event with id  " + id + " is already full");
-        }
-        else{
-            erRepository.save(new EventRegistration(ui.get(), ei.get()));
-        }
+        catch(IllegalStateException ie){
+            return false;
+        }return true;
     }
 
     public void unregisterEvent(Long id, Long userId) {
