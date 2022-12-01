@@ -1,0 +1,242 @@
+/* screen - register-page */
+
+.register-page {
+  align-items: flex-start;
+  background: linear-gradient(180deg, rgb(172.13, 51.78, 51.78) 0%, rgb(242, 175, 41) 100%);
+  background-color: rgba(255,255,255,1.0);
+  background-image: url(/img/blur-overlay@1x.png);
+  background-size: 100% 100%;
+  border: 1px none;
+  display: flex;
+  height: 1024px;
+  overflow: hidden;
+  width: 1440px;
+}
+
+.register-page .overlap-group1 {
+  -webkit-backdrop-filter: blur(10px) brightness(100%);
+  align-items: center;
+  backdrop-filter: blur(10px) brightness(100%);
+  background-color: var(--fuel-yellow-2);
+  display: flex;
+  flex-direction: column;
+  margin-left: -49px;
+  margin-top: -14px;
+  min-height: 1065px;
+  padding: 186px 325px;
+  width: 1565px;
+}
+
+.register-page .register-now {
+  letter-spacing: 0;
+  line-height: 48px;
+  margin-right: 26.0px;
+  min-width: 353px;
+  text-shadow: 8px 8px 30px #ac3333;
+  white-space: nowrap;
+}
+
+.register-page .overlap-group-container {
+  align-items: flex-start;
+  align-self: flex-start;
+  display: flex;
+  gap: 117px;
+  height: 381px;
+  margin-top: 75px;
+  min-width: 891px;
+}
+
+.register-page .overlap-group {
+  -webkit-backdrop-filter: blur(4px) brightness(100%);
+  align-items: flex-start;
+  backdrop-filter: blur(4px) brightness(100%);
+  background-color: var(--alto-2);
+  border-radius: 19px;
+  display: flex;
+  flex-direction: column;
+  min-height: 381px;
+  padding: 18px 26px;
+  width: 387px;
+}
+
+.register-page .email {
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.register-page .overlap-group-1 {
+  align-items: flex-start;
+  background-color: var(--alto);
+  border: 3px solid;
+  border-color: var(--well-read);
+  border-radius: 10px;
+  display: flex;
+  height: 65px;
+  margin-top: 8px;
+  min-width: 334px;
+  padding: 18px 21px;
+}
+
+.register-page .enter-your-email {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 174px;
+}
+
+.register-page .enter-your-email::placeholder {
+  color: #00000099;
+}
+
+.register-page .password {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: 21px;
+  white-space: nowrap;
+}
+
+.register-page .create-a-password {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 193px;
+}
+
+.register-page .create-a-password::placeholder {
+  color: #00000099;
+}
+
+.register-page .confirm-password {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: 21px;
+  white-space: nowrap;
+}
+
+.register-page .re-enter-password {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 199px;
+}
+
+.register-page .re-enter-password::placeholder {
+  color: #00000099;
+}
+
+.register-page .username {
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.register-page .create-a-username {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 200px;
+}
+
+.register-page .create-a-username::placeholder {
+  color: #00000099;
+}
+
+.register-page .first-name {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: 21px;
+  white-space: nowrap;
+}
+
+.register-page .enter-first-name {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 170px;
+}
+
+.register-page .enter-first-name::placeholder {
+  color: #00000099;
+}
+
+.register-page .last-name {
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: 21px;
+  white-space: nowrap;
+}
+
+.register-page .enter-last-name {
+  background-color: transparent;
+  border: 0;
+  height: 21px;
+  letter-spacing: 0;
+  line-height: 21px;
+  padding: 0;
+  white-space: nowrap;
+  width: 167px;
+}
+
+.register-page .enter-last-name::placeholder {
+  color: #00000099;
+}
+
+.register-page .group-26 {
+  align-items: flex-start;
+  cursor: pointer;
+  display: flex;
+  margin-right: 26.0px;
+  margin-top: 51px;
+  min-width: 377px;
+}
+
+.register-page .overlap-group-2 {
+  border-radius: 10px;
+  height: 75px;
+  position: relative;
+  width: 375px;
+}
+
+.register-page .rectangle-47 {
+  background-color: var(--well-read);
+  border: 1px none;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 75px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 375px;
+}
+
+.register-page .sign-up {
+  height: 24px;
+  left: 131px;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: absolute;
+  text-align: center;
+  top: 26px;
+  white-space: nowrap;
+}

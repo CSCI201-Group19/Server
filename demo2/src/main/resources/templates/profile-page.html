@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
+    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" type="text/css" href="/profile-page.css" />
+    <link rel="stylesheet" type="text/css" href="/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="/globals.css" />
+    <script>
+      function f1(){
+        var x1http = new XMLHttpRequest();
+        x1http.onload = function() {
+          var obj=JSON.parse(this.responseText);
+          document.getElementById("username").innerHTML="Username: "+obj.userName;
+          document.getElementById("email").innerHTML="Email: "+obj.email;
+          document.getElementById("firstname").innerHTML="First Name: "+obj.firstName;
+          document.getElementById("lastname").innerHTML="Last Name: "+obj.lastName;
+        };
+        x1http.open("GET", "http://localhost:8080/api/v1/UserInfo/fetchProfile?userName="+localStorage.getItem("username"),true)
+        x1http.send();
+
+      }
+    </script>
+  </head>
+  <body style="margin: 0" onload="f1()">
+    <script>
+      window.theme = {
+        primaryColor: "#1890ff",
+        secondaryColor: "#1890ff",
+        successColor: "#52c41a",
+        warningColor: "#faad14",
+        errorColor: "#f5222d",
+      };
+      window.globalTheme = {
+        palette: {
+          primary: {
+            main: "#1976d2",
+          },
+          secondary: {
+            main: "#9c27b0",
+          },
+          error: {
+            main: "#d32f2f",
+          },
+          warning: {
+            main: "#ed6c02",
+          },
+          info: {
+            main: "#0288d1",
+          },
+          success: {
+            main: "#2e7d32",
+          },
+          text: {
+            primary: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontSize: 14,
+        },
+        shape: {
+          borderRadius: 4,
+        },
+      };
+    </script>
+
+    <input type="hidden" id="anPageName" name="page" value="profile-page" />
+    <div class="container-center-horizontal">
+      <div class="profile-page screen">
+        <div class="overlap-group6">
+          <div class="flex-row">
+            <div class="flex-col">
+              <img
+                class="t-black-aura-young"
+                src="img/-t--black---aura-young@2x.png"
+                alt="T] Black - Aura Young"
+              />
+              <h1 class="profile-name valign-text-middle">Tommy<br />Trojan</h1>
+              <a href="/">
+                <div class="overlap-group7">
+                  <div class="logout valign-text-middle">
+                    Logout
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="profile-info-group">
+              <div class="overlap-group-1">
+                <div class="your-profile">Your Profile:</div>
+                <div class="overlap-group1">
+                  <div id ="username" class="username montserrat-bold-black-30px">
+                    Username:
+                  </div>
+                </div>
+                <div class="overlap-group">
+                  <div id ="email" class="email montserrat-bold-black-30px">Email:</div>
+                </div>
+                <div class="overlap-group">
+                  <div id ="firstname" class="first-name montserrat-bold-black-30px">
+                    First Name:
+                  </div>
+                </div>
+                <div class="overlap-group3">
+                  <div id ="lastname" class="last-name montserrat-bold-black-30px">
+                    Last Name:
+                  </div>
+                </div>
+                <div class="overlap-group5">
+                  <a href="profile-page-edit-information.html">
+                    <div class="rectangle-51"></div></a
+                  ><a href="profile-page-edit-information.html"
+                    ><div class="edit-your-profile montserrat-bold-black-30px">
+                      edit your profile
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-bar-structure">
+              <a href="/calendar">
+                <div class="link">
+                  <img
+                    class="material-symbolscalendar-today"
+                    src="img/material-symbols-calendar-today@2x.png"
+                    alt="material-symbols:calendar-today"
+                  />
+                  <div class="calendar candal-normal-black-12px">Calendar</div>
+                </div></a
+              ><a href="/event-list">
+                <div class="link">
+                  <img
+                    class="material-symbolsformat-list-bulleted"
+                    src="img/material-symbols-format-list-bulleted@2x.png"
+                    alt="material-symbols:format-list-bulleted"
+                  />
+                  <div class="event-list candal-normal-black-12px">
+                    Event List
+                  </div>
+                </div></a
+              ><a href="/create-event">
+                <div class="link">
+                  <img
+                    class="gridiconscreate"
+                    src="img/gridicons-create@2x.png"
+                    alt="gridicons:create"
+                  />
+                  <div class="create-event candal-normal-black-12px">
+                    Create Event
+                  </div>
+                </div></a
+              >
+              <div class="profile">
+                <img
+                  class="icon-user"
+                  src="img/mdi-user-2@2x.png"
+                  alt="icon-user"
+                />
+                <div class="profile-1 candal-normal-black-12px">Profile</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
