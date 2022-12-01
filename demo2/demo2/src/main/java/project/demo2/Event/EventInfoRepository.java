@@ -24,4 +24,6 @@ public interface EventInfoRepository
     List<EventInfo> findEventInfoByHostID(Long user_id);
 
 
+
+
 }
