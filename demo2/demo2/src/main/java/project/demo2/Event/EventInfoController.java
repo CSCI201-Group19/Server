@@ -39,7 +39,8 @@ public class EventInfoController {
 
     @GetMapping(path = "User/{username}/{date}")
     public List<EventInfo> getEventInfoByUserAndDate(@PathVariable("username") String username,
-                                                     @PathVariable("date") LocalDate date){
+                                                     @PathVariable("date") String dateString){
+        LocalDate date = LocalDate.parse(dateString);
         return es.getEventInfoByUserAndDate(username, date);
     }
 
