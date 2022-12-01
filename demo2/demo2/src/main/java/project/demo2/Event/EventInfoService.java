@@ -195,5 +195,17 @@ public class EventInfoService {
         ei.get().setCapacity(cap);
         eiRepository.save(ei.get());
     }
+
+    public EventInfoRepository getEiRepository() {
+        return eiRepository;
+    }
+
+    public EventRegistrationRepository getErRepository() {
+        return erRepository;
+    }
+
+    public UserInfoRepository getUiRepository() {
+        return uiRepository;
+    }
 }
 
