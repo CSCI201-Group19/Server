@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="/globals.css" />
   </head>
-  <body style="margin: 0">
+  <body style="margin: 0" onload="load_date()">
     <script>
       window.theme = {
         primaryColor: "#1890ff",
@@ -56,7 +56,12 @@
           borderRadius: 4,
         },
       };
+      function load_date(){
+        var today = new Date();
 
+        document.getElementById("date-input").value=today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+      }
       async function getEvents() {
         // Fetch API data:
         const date = localStorage.getItem("curr_date");
@@ -167,7 +172,7 @@
                     id="date-input"
                     placeholder="Date*"
                     type="date"
-                    min = "2022-11-28"
+                    min = "2021-11-28"
                 />
               </div>
             </div>
