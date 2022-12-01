@@ -107,8 +107,7 @@
             timeZone: 'America/Los_Angeles'
           };
           // const formattedDateString = new Intl.DateTimeFormat("en-US", eventListOptions).format(eventDate);
-          html +=
-                  "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
+          html += "<div class='users-event' data-name='" + eventsArr[i].name.toLowerCase().replace(/\s+/g, '-') + ">"
                   + "<div class=\"frame-20\">"
                   + "<div class=\"event-name valign-text-middle montserrat-semi-bold-black-24px\">"
                   + eventsArr[i].name + "</div>"
@@ -126,7 +125,7 @@
                   + eventsArr[i].category
                   + "</div>"
                   + "</div>"
-                  + "</div>"
+                  + "</div>";
         }
         console.log(html);
         document.getElementById('daily-events-list').innerHTML = html;
@@ -171,15 +170,16 @@
                 const currentDay = document.querySelector('#currentDay');
                 // increment the date
                 let date = event.target.valueAsDate;
-                date.setDate(event.target.valueAsDate.getDate() + 1);
+                let incrementedDate = date.getDate() + 1;
 
                 // format the month variable and the current date variable
                 monthValue.textContent = new Intl.DateTimeFormat("en-US", monthOptions).format(date);
-                prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
+                prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(incrementedDate);
                 // currentDay.textContent = new Intl.DateTimeFormat("en-US", currentDayOptions).format(date);
 
                 // update locally stored curr date
                 window.localStorage.setItem("curr_date", date.toISOString().slice(0, 10));
+                console.log(date.toISOString().slice(0, 10));
                 window.localStorage.setItem("curr_date_pretty", prettyCurrentDay);
 
                 // call event list builder
