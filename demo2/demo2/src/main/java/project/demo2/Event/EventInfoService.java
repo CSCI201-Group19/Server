@@ -59,8 +59,12 @@ public class EventInfoService {
         return eventInfos;
     }
 
-    public List<EventInfo> getEventInfoCreatedByUser(Long id) {
-        return eiRepository.findEventInfoByHostID(id);
+    public List<EventInfo> getEventInfoCreatedByUser(String username) {
+        Optional<UserInfo> userInfo = uiRepository.findUserInfoByName(username);
+        if (!userInfo.isPresent()){
+            throw new IllegalStateException("The user does not exist");
+        }
+        return eiRepository.findEventInfoByHostID(userInfo.get().getId());
     }
 
 
