@@ -188,6 +188,7 @@
               // sets initial date input value as current day
               dateInput.valueAsDate = new Date();
 
+
               // stores the current day in local storage
               let prettyCurrentDay = new Intl.DateTimeFormat("en-US", currentDayOptions).format(dateInput.valueAsDate);
               window.localStorage.setItem("curr_date", dateInput.valueAsDate.toISOString().slice(0, 10));
