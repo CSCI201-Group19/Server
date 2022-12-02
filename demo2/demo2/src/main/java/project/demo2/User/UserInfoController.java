@@ -47,15 +47,7 @@ public class UserInfoController {
 
     }
 
-    @GetMapping(path = "/fetchEventByUserCreate")
-    public List<EventInfo> fetchEventCreated(@RequestParam String userName){
 
-        return uiService.UserEventsByNameCreated(userName);
-
-    }
-
-
-    }
 
     @GetMapping(path = "/fetchEventByUserCreate")
     public List<EventInfo> fetchEventCreated(@RequestParam String userName){
@@ -63,26 +55,26 @@ public class UserInfoController {
 
     }
 
-    @PostMapping(path = "/updateEmail")
-    public void updateEmail(@RequestParam String email, String userName)
+    @PutMapping(path = "/updateEmail/{userName}/{email}")
+    public void updateEmail(@PathVariable("userName") String userName, @PathVariable("email") String email)
     {
         uiService.UserUpdateEmail(userName,email);
     }
 
-    @PostMapping(path = "/updateUsername")
-    public void updateUsername(@RequestParam String userName_, String userName) //userName_ is the input field, userName is the original username
+    @PutMapping(path = "/updateUsername/{userName}/{newUserName}")
+    public void updateUsername(@PathVariable("userName") String userName, @PathVariable("newUserName") String newUserName) //userName_ is the input field, userName is the original username
     {
-        uiService.UserUpdateUsername(userName_, userName);
+        uiService.UserUpdateUsername(newUserName, userName);
     }
 
-    @PostMapping(path = "/updateFirstName")
-    public void updateFirstName(@RequestParam String firstName, String userName)
+    @PutMapping(path = "/updateFirstName/{userName}/{firstName}")
+    public void updateFirstName(@PathVariable("userName") String userName, @PathVariable("firstName") String firstName)
     {
         uiService.UserUpdateFirstName(firstName,userName);
     }
 
-    @PostMapping(path = "/updateLastName")
-    public void updateLastName(@RequestParam String lastName, String userName)
+    @PutMapping(path = "/updateLastName/{userName}/{lastName}")
+    public void updateLastName(@PathVariable("userName") String userName, @PathVariable("lastName") String lastName)
     {
         uiService.UserUpdateLastName(lastName,userName);
     }
