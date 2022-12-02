@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!--<meta name=description content="Event List Page for CSCI 201 Group Project"/>-->
+    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://animaproject.s3.amazonaws.com/home/favicon.png"
+    />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" type="text/css" href="/event-lists-page.css" />
+    <link rel="stylesheet" type="text/css" href="/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="/globals.css" />
+    <script>
+      const getEventByCreator = async () => {
+        const res = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/fetchEventByUserCreate?userName=" +
+            localStorage.getItem("username")
+        );
+        const data = await res.json();
+        return data;
+      };
+
+      const getAllEvent = async () => {
+        const res = await fetch("http://localhost:8080/api/v1/EventInfo");
+        const data = await res.json();
+        return data;
+      };
+
+      async function f1() {
+        let n = "";
+
+        let ca = "";
+
+        const timeOptions = {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+          timeZone: "America/Los_Angeles",
+        };
+        const eventDayOptions = {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          timeZone: "America/Los_Angeles",
+        };
+
+        var obj = await getEventByCreator();
+        if (Object.keys(obj).length === 0){
+          console.log("ok");
+        }else{
+          if (obj.length > 4) {
+            document.getElementById("yy").style.overflowY = "scroll";
+          }
+          console.log(obj);
+
+        }
+
+        var object=await getAllEvent();
+        console.log("ok2");
+
+        for (let i = 0; i < obj.length; i++) {
+          n = obj[i].name;
+          let fullDateString = obj[i].date + "T" + obj[i].time;
+          let eventDate = new Date(fullDateString);
+          let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
+          let dayString = eventDate.toLocaleDateString(
+            "en-US",
+            eventDayOptions
+          );
+          let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
+
+
+
+          document.getElementById(
+            "yy"
+          ).innerHTML += `<div class="event-listing">
+                <div class="flex-col montserrat-semi-bold-black-24px">
+                  <div class="overlap-group">
+                    <div class="event-name-bar"></div>
+                    <div class="event-xxx valign-text-middle">${n}</div>
+                  </div>
+                    <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                     ${dayString}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                     ${timeString}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                      ${obj[i].location}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                      ${obj[i].category}
+                    </div>
+                  </div>
+                </div>
+                <div class="overlap-group-container">
+                  <div class="overlap-group-1">
+                    <button onclick="f3(${obj[i].id})" class="deleteButton" style="background-color: Transparent; border:none;
+                    font-size:25px; font-family:var(--font-family-candal)">
+                    <div class="delete inter-semi-bold-white-13px">Delete</div>
+                    </button>
+                  </div>
+                  <div class="overlap-group-2 montserrat-semi-bold-black-24px">
+                    <div class="capacity valign-text-middle">Capacity:</div>
+                    <div class="xx-1 candal-normal-black-24px">${capacity}</div>
+                  </div>
+                </div>
+              </div><br>`;
+        }
+
+
+        if (Object.keys(object).length === 0){
+            console.log("ok");
+        }
+        else{
+          if (object.length > 4) {
+            document.getElementById("ae").style.overflowY = "scroll";
+          }
+
+        }
+        for (let i = 0; i < object.length; i++) {
+          // date and time formatting
+          let fullDateString = object[i].date + "T" + object[i].time;
+          let eventDate = new Date(fullDateString);
+          let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
+          let dayString = eventDate.toLocaleDateString(
+            "en-US",
+            eventDayOptions
+          );
+
+          document.getElementById(
+            "ae"
+          ).innerHTML += `<div class="event-register-listing">
+                <div class="event-info-box">
+                  <div class="event-name-bar">
+                    <div class="event-name valign-text-middle montserrat-semi-bold-black-24px">
+                      ${object[i].name}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                     ${dayString}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                     ${timeString}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                      ${object[i].location}
+                    </div>
+                  </div>
+                  <div class="frame-2">
+                    <div class="event-attribute montserrat-semi-bold-black-24px">
+                      ${object[i].category}
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-25">
+                  <div class="place valign-text-middle candal-normal-black-24px">
+                    <button class="register-button" style="background-color: Transparent; border:none;
+                    font-size:25px; font-family:var(--font-family-candal)" onclick="f2(${object[i].id})">Register </button>
+
+                  </div>
+                </div>
+              </div><br>`;
+        }
+      }
+    </script>
+    <script>
+      const register = async (x) => {
+        const res = await fetch(
+          "http://localhost:8080/api/v1/EventInfo/register/" +
+            x +
+            "/" +
+            localStorage.getItem("username")
+        );
+        const data = await res.text();
+        return data;
+      };
+      async function f2(x) {
+        const rsp = await register(x);
+        if (rsp === "true") {
+          alert("Registration successful!");
+        } else {
+          alert("Registration failed. You're already in it.");
+        }
+      }
+    </script>
+    <script>
+      const deleteEvent = async (x) => {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/EventInfo/deleteEvent/" +
+            x +
+            "/" +
+            localStorage.getItem("username"),
+          { method: "DELETE" }
+        );
+        const data = await response.text();
+        return data;
+      };
+      async function f3(x) {
+        const res = await deleteEvent(x);
+        console.log("trying to delete " + x);
+        if (res === "true") {
+          window.location.href = "/event-list";
+          alert("Successfully deleted!");
+        } else {
+          alert("Couldn't delete it.");
+        }
+      }
+    </script>
+  </head>
+  <body style="margin: 0" onload="f1()">
+    <script>
+      window.theme = {
+        primaryColor: "#1890ff",
+        secondaryColor: "#1890ff",
+        successColor: "#52c41a",
+        warningColor: "#faad14",
+        errorColor: "#f5222d",
+      };
+      window.globalTheme = {
+        palette: {
+          primary: {
+            main: "#1976d2",
+          },
+          secondary: {
+            main: "#9c27b0",
+          },
+          error: {
+            main: "#d32f2f",
+          },
+          warning: {
+            main: "#ed6c02",
+          },
+          info: {
+            main: "#0288d1",
+          },
+          success: {
+            main: "#2e7d32",
+          },
+          text: {
+            primary: "rgba(0, 0, 0, 0.87)",
+          },
+        },
+        typography: {
+          fontSize: 14,
+        },
+        shape: {
+          borderRadius: 4,
+        },
+      };
+    </script>
+
+    <input type="hidden" id="anPageName" name="page" value="event-lists-page" />
+    <div class="container-center-horizontal">
+      <div class="event-lists-page screen">
+        <div class="overlap-group9">
+          <div class="frame-container">
+            <div class="all-event-list">
+              <div class="x-events candal-normal-white-36px">All Events</div>
+              <div id="ae"></div>
+            </div>
+            <div class="frame-14">
+              <div class="x-events candal-normal-white-36px">
+                Events You've Created
+              </div>
+              <div id="yy"></div>
+            </div>
+          </div>
+          <div class="tab-bar">
+            <div class="tab-bar-structure">
+              <a href="/calendar">
+                <div class="link">
+                  <img
+                    class="material-symbolscalendar-today"
+                    src="img/material-symbols-calendar-today@2x.png"
+                    alt="material-symbols:calendar-today"
+                  />
+                  <div class="calendar candal-normal-black-12px">Calendar</div>
+                </div></a
+              >
+              <div class="event-lists">
+                <img
+                  class="material-symbolsformat-list-bulleted"
+                  src="img/material-symbols-format-list-bulleted@2x.png"
+                  alt="material-symbols:format-list-bulleted"
+                />
+                <div class="event-list candal-normal-black-12px">
+                  Event List
+                </div>
+              </div>
+              <a href="/create-event">
+                <div class="link">
+                  <img
+                    class="gridiconscreate"
+                    src="img/gridicons-create@2x.png"
+                    alt="gridicons:create"
+                  />
+                  <div class="create-event candal-normal-black-12px">
+                    Create Event
+                  </div>
+                </div></a
+              ><a href="/profile">
+                <div class="link">
+                  <img
+                    class="icon-user"
+                    src="img/mdi-user-2@2x.png"
+                    alt="icon-user"
+                  />
+                  <div class="profile candal-normal-black-12px">Profile</div>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
