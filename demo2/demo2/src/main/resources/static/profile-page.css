@@ -197,6 +197,7 @@
 }
 
 .profile-page .rectangle-51 {
+  display: none;
   background-color: var(--fuel-yellow);
   border: 1px none;
   border-radius: 15px;
