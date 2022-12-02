@@ -21,7 +21,7 @@ public class EventInfoConfig {
                     LocalDate.of(2022, Month.DECEMBER,20),
                     LocalTime.of(15,0,0),150, 2l, "Jason");
             EventInfo coffeeChat = new EventInfo("Coffee Chat", "StarBucks", "study",
-                    LocalDate.of(2022, Month.DECEMBER, 2),
+                    LocalDate.of(2022, Month.DECEMBER, 7),
                     LocalTime.of(20,0,0),3,3l,"Leon");
 
             repository.saveAll(List.of(studyGroup,presentation,coffeeChat));
