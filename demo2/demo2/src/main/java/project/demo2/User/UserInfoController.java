@@ -47,12 +47,35 @@ public class UserInfoController {
 
     }
 
+
+
     @GetMapping(path = "/fetchEventByUserCreate")
     public List<EventInfo> fetchEventCreated(@RequestParam String userName){
-
         return uiService.UserEventsByNameCreated(userName);
 
     }
 
+    @PutMapping(path = "/updateEmail/{userName}/{email}")
+    public void updateEmail(@PathVariable("userName") String userName, @PathVariable("email") String email)
+    {
+        uiService.UserUpdateEmail(userName,email);
+    }
 
+    @PutMapping(path = "/updateUsername/{userName}/{newUserName}")
+    public void updateUsername(@PathVariable("userName") String userName, @PathVariable("newUserName") String newUserName) //userName_ is the input field, userName is the original username
+    {
+        uiService.UserUpdateUsername(newUserName, userName);
+    }
+
+    @PutMapping(path = "/updateFirstName/{userName}/{firstName}")
+    public void updateFirstName(@PathVariable("userName") String userName, @PathVariable("firstName") String firstName)
+    {
+        uiService.UserUpdateFirstName(firstName,userName);
+    }
+
+    @PutMapping(path = "/updateLastName/{userName}/{lastName}")
+    public void updateLastName(@PathVariable("userName") String userName, @PathVariable("lastName") String lastName)
+    {
+        uiService.UserUpdateLastName(lastName,userName);
+    }
 }

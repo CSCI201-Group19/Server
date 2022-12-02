@@ -61,9 +61,9 @@ public class EventInfoController {
 
 
     
-    @DeleteMapping(path = "{EventInfoId}/{HostID}")
-    public void deleteEvent(@PathVariable("EventInfoId") Long id,@PathVariable("HostID") Long hostId){
-        es.deleteEvent(id,hostId);
+    @DeleteMapping(path = "deleteEvent/{EventInfoId}/{HostUsername}")
+    public Boolean deleteEvent(@PathVariable("EventInfoId") Long id,@PathVariable("HostUsername") String username){
+        return es.deleteEvent(id,username);
     }
 
 }

@@ -1,6 +1,7 @@
 package project.demo2.Event;
 
 import jdk.jfr.Event;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.demo2.User.UserInfo;
@@ -82,19 +83,29 @@ public class EventInfoService {
         er.setUser(uiRepository.getReferenceById(uiRepository.findIdByUsername(ei.getHostName())));
         erRepository.save(er);
     }
-    public void deleteEvent(Long id, Long HostID){
-        Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
-        if(!ei.isPresent()){
-            throw new IllegalStateException("Event with id "+ id + " does not exist.");
+    public Boolean deleteEvent(Long id, String username){
+        System.out.println(id + " " + username);
+        try {
+            Optional<EventInfo> ei = eiRepository.findEventInfoById(id);
+            if (!ei.isPresent()) {
+                throw new IllegalStateException("Event with id " + id + " does not exist.");
+            }
+            Long host_id = ei.get().getHostId();
+            Optional<UserInfo> ui = uiRepository.findUserInfoByName(username);
+            if (!ui.isPresent()) {
+                throw new IllegalStateException("User with name " + username + " does not exist.");
+            }
+            if (host_id == ui.get().getId()) {
+                List<EventRegistration> ers = erRepository.findEventRegistrationByEvent(ei.get());
+                erRepository.deleteAll(ers);
+                eiRepository.deleteById(id);
+            } else
+                throw new IllegalStateException("The user is not allowed to modify the event");
+        } catch (IllegalStateException e){
+            throw e;
         }
-        Long host_id = ei.get().getHostId();
-        if(host_id == HostID) {
-            List<EventRegistration> ers = erRepository.findEventRegistrationByEvent(ei.get());
-            erRepository.deleteAll(ers);
-            eiRepository.deleteById(id);
-        }
-        else
-            throw new IllegalStateException("Not allowed to modify the event");
+        return true;
+
     }
 
     //public void registerEvent(Long id, String userName) {

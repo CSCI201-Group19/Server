@@ -59,9 +59,46 @@ public class UserInfoService {
 
 
     public List<EventInfo> UserEventsByNameCreated(String userName) {
-
-        //return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
         return eventRepository.findEventInfoByHostName(uiRepository.findUserInfoByName(userName).get().getUserName());
+    }
 
+    public void UserUpdateEmail(String username, String email)
+    {
+        Optional<UserInfo> ui = uiRepository.findUserInfoByName(username);
+        if (!ui.isPresent()) {
+            throw new IllegalStateException("User with name " + username + " does not exist.");
+        }
+
+        uiRepository.updateEmail(username, email);
+    }
+
+    public void UserUpdateUsername(String username_, String username)
+    {
+        Optional<UserInfo> ui = uiRepository.findUserInfoByName(username);
+        if (!ui.isPresent()) {
+            throw new IllegalStateException("User with name " + username + " does not exist.");
+        }
+
+        long id = uiRepository.findIdByUsername(username);
+        uiRepository.updateUN(username_, id);
+    }
+
+    public void UserUpdateFirstName(String firstName, String username)
+    {
+        Optional<UserInfo> ui = uiRepository.findUserInfoByName(username);
+        if (!ui.isPresent()) {
+            throw new IllegalStateException("User with name " + username + " does not exist.");
+        }
+
+        uiRepository.updateFN(firstName, username);
+    }
+
+    public void UserUpdateLastName(String lastName, String username)
+    {
+        Optional<UserInfo> ui = uiRepository.findUserInfoByName(username);
+        if (!ui.isPresent()) {
+            throw new IllegalStateException("User with name " + username + " does not exist.");
+        }
+        uiRepository.updateLN(lastName, username);
     }
 }
