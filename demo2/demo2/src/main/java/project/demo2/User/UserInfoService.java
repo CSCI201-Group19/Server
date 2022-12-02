@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.demo2.Event.EventInfo;
 import project.demo2.Event.EventInfoRepository;
-//import project.demo2.Event.EventInfoService;
+import project.demo2.Event.EventInfoService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class UserInfoService {
 
 
     public List<EventInfo> UserEventsByNameCreated(String userName) {
-        return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
+        return eventRepository.findEventInfoByHostName(uiRepository.findUserInfoByName(userName).get().getUserName());
     }
 
     public void UserUpdateEmail(String username, String email)
@@ -69,7 +69,7 @@ public class UserInfoService {
 
     public void UserUpdateUsername(String username_, String username)
     {
-        long id = uiRepository.findIDByUsername(username);
+        long id = uiRepository.findIdByUsername(username);
         uiRepository.updateUN(username_, id);
     }
 
