@@ -202,6 +202,7 @@
         const res = await deleteEvent(x);
         console.log("trying to delete " + x);
         if (res === "true") {
+          window.location.href = "/event-list";
           alert("Successfully deleted!");
         } else {
           alert("Couldn't delete it.");
