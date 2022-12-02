@@ -23,6 +23,7 @@
   <body style="margin: 0">
     <script>
       const editProfie = async () => {
+        console.log("hello we're editing the profile");
         var x1http = new XMLHttpRequest();
         var password = "";
         x1http.onload = function () {
@@ -49,6 +50,9 @@
           firstName,
           lastName,
         };
+
+        window.localStorage.setItem("username", userName);
+        window.localStorage.setItem("password", password);
 
         const response = await fetch(
           "http://localhost:8080/api/v1/UserInfo/signup",
@@ -155,6 +159,7 @@
                   <input
                     class="username montserrat-bold-black-30px"
                     name="username_"
+                    id="username"
                     placeholder="Username:"
                     type="text"
                     required
@@ -164,6 +169,7 @@
                   <input
                     class="email montserrat-bold-black-30px"
                     name="email_"
+                    id="email"
                     placeholder="Email:"
                     type="text"
                     required
@@ -173,6 +179,7 @@
                   <input
                     class="first-name montserrat-bold-black-30px"
                     name="firstname_"
+                    id="firstName"
                     placeholder="First Name:"
                     type="text"
                     required
@@ -182,6 +189,7 @@
                   <input
                     class="last-name montserrat-bold-black-30px"
                     name="lastname_"
+                    id="lastName"
                     placeholder="Last Name:"
                     type="text"
                     required

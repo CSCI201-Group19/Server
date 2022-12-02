@@ -16,50 +16,72 @@
     <link rel="stylesheet" type="text/css" href="/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="/globals.css" />
     <script>
-      const getEventByCreator = async() =>{
-        const res = await fetch("http://localhost:8080/api/v1/UserInfo/fetchEventByUserCreate?userName="
-        +localStorage.getItem("username"));
+      const getEventByCreator = async () => {
+        const res = await fetch(
+          "http://localhost:8080/api/v1/UserInfo/fetchEventByUserCreate?userName=" +
+            localStorage.getItem("username")
+        );
         const data = await res.json();
         return data;
-      }
+      };
 
-      const getAllEvent = async() =>{
+      const getAllEvent = async () => {
         const res = await fetch("http://localhost:8080/api/v1/EventInfo");
         const data = await res.json();
         return data;
-      }
-      async function f1(){
-        let n="";
+      };
+      const response = await fetch(
 
-        let ca="";
+      )
+
+
+      const deleteEvent = async () => {
+        let username;
+        try {
+          username = window.localStorage.getItem("username");
+        } catch (e) {
+          alert(e);
+        }
+      };
+
+      async function f1() {
+        let n = "";
+
+        let ca = "";
 
         const timeOptions = {
-          hour: 'numeric', minute: 'numeric',
+          hour: "numeric",
+          minute: "numeric",
           hour12: true,
-          timeZone: 'America/Los_Angeles'
+          timeZone: "America/Los_Angeles",
         };
         const eventDayOptions = {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric',
-          timeZone: 'America/Los_Angeles'
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          timeZone: "America/Los_Angeles",
         };
 
         var obj = await getEventByCreator();
-        if(obj.length>4){
-          document.getElementById("yy").style.overflowY="scroll" ;
+        if (obj.length > 4) {
+          document.getElementById("yy").style.overflowY = "scroll";
         }
         console.log(obj);
 
-        for (let i = 0; i < obj.length; i++){
-          n=obj[i].name;
+        for (let i = 0; i < obj.length; i++) {
+          n = obj[i].name;
           let fullDateString = obj[i].date + "T" + obj[i].time;
           let eventDate = new Date(fullDateString);
           let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
-          let dayString = eventDate.toLocaleDateString("en-US", eventDayOptions);
+          let dayString = eventDate.toLocaleDateString(
+            "en-US",
+            eventDayOptions
+          );
           let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
 
-          document.getElementById("yy").innerHTML+=`<div class="event-listing">
+          document.getElementById(
+            "yy"
+          ).innerHTML += `<div class="event-listing">
                 <div class="flex-col montserrat-semi-bold-black-24px">
                   <div class="overlap-group">
                     <div class="event-name-bar"></div>
@@ -91,7 +113,7 @@
                 </div>
                 <div class="overlap-group-container">
                   <div class="overlap-group-1">
-                    <div class="delete inter-semi-bold-white-13px">Delete</div>
+                    <div onclick="deleteEvent()" class="delete inter-semi-bold-white-13px">Delete</div>
                   </div>
                   <div class="overlap-group-2 montserrat-semi-bold-black-24px">
                     <div class="capacity valign-text-middle">Capacity:</div>
@@ -101,21 +123,24 @@
               </div><br>`;
         }
 
-
         var object = await getAllEvent();
-        if(object.length>4){
-          document.getElementById("ae").style.overflowY="scroll" ;
+        if (object.length > 4) {
+          document.getElementById("ae").style.overflowY = "scroll";
         }
 
-        for(let i=0; i<object.length;i++){
+        for (let i = 0; i < object.length; i++) {
           // date and time formatting
           let fullDateString = object[i].date + "T" + object[i].time;
           let eventDate = new Date(fullDateString);
           let timeString = eventDate.toLocaleTimeString("en-US", timeOptions);
-          let dayString = eventDate.toLocaleDateString("en-US", eventDayOptions);
+          let dayString = eventDate.toLocaleDateString(
+            "en-US",
+            eventDayOptions
+          );
 
-          document.getElementById("ae").innerHTML+=
-                  `<div class="event-register-listing">
+          document.getElementById(
+            "ae"
+          ).innerHTML += `<div class="event-register-listing">
                 <div class="event-info-box">
                   <div class="event-name-bar">
                     <div class="event-name valign-text-middle montserrat-semi-bold-black-24px">
@@ -152,25 +177,26 @@
                 </div>
               </div><br>`;
         }
-
-
       }
     </script>
     <script>
-      const register = async(x) =>{
-        const res = await fetch("http://localhost:8080/api/v1/EventInfo/register/"+x+"/"+localStorage.getItem("username"));
+      const register = async (x) => {
+        const res = await fetch(
+          "http://localhost:8080/api/v1/EventInfo/register/" +
+            x +
+            "/" +
+            localStorage.getItem("username")
+        );
         const data = await res.text();
         return data;
-      }
-      async function f2(x){
+      };
+      async function f2(x) {
         const rsp = await register(x);
-        if(rsp==="true"){
+        if (rsp === "true") {
           alert("Registration successful!");
-        }
-        else{
+        } else {
           alert("Registration failed. You're already in it.");
         }
-
       }
     </script>
   </head>
@@ -214,8 +240,6 @@
           borderRadius: 4,
         },
       };
-
-
     </script>
 
     <input type="hidden" id="anPageName" name="page" value="event-lists-page" />
@@ -223,13 +247,15 @@
       <div class="event-lists-page screen">
         <div class="overlap-group9">
           <div class="frame-container">
-            <div  class="all-event-list">
+            <div class="all-event-list">
               <div class="x-events candal-normal-white-36px">All Events</div>
-              <div id = "ae"></div>
+              <div id="ae"></div>
             </div>
-            <div  class="frame-14">
-              <div  class="x-events candal-normal-white-36px">Events You've Created</div>
-              <div id = "yy"  ></div>
+            <div class="frame-14">
+              <div class="x-events candal-normal-white-36px">
+                Events You've Created
+              </div>
+              <div id="yy"></div>
             </div>
           </div>
           <div class="tab-bar">

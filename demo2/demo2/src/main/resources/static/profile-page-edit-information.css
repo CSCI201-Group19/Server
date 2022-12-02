@@ -7,24 +7,24 @@
   background-size: 100% 100%;
   border: 1px none;
   display: flex;
-  height: 1024px;
+  height: 100vh;
   overflow: hidden;
-  width: 1440px;
+  width: 100vw;
 }
 
 .profile-page-edit-information .overlap-group6 {
   -webkit-backdrop-filter: blur(10px) brightness(100%);
-  align-items: flex-start;
+  align-items: center;
   backdrop-filter: blur(10px) brightness(100%);
   background-color: var(--fuel-yellow-2);
   display: flex;
   flex-direction: column;
-  gap: 198px;
+  gap: 160px;
   margin-left: -49px;
   margin-top: -14px;
-  min-height: 1065px;
+  min-height: 100vh;
   padding: 39px 186px;
-  width: 1565px;
+  width: 100vw;
 }
 
 .profile-page-edit-information .flex-row {
