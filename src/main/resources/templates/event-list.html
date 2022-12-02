@@ -18,7 +18,7 @@
     <script>
       const getEventByCreator = async () => {
         const res = await fetch(
-          "http://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/fetchEventByUserCreate?userName=" +
+          "https://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/fetchEventByUserCreate?userName=" +
             localStorage.getItem("username")
         );
         const data = await res.json();
@@ -26,7 +26,7 @@
       };
 
       const getAllEvent = async () => {
-        const res = await fetch("http://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo");
+        const res = await fetch("https://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo");
         const data = await res.json();
         return data;
       };
@@ -184,7 +184,7 @@
     <script>
       const register = async (x) => {
         const res = await fetch(
-          "http://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo/register/" +
+          "https://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo/register/" +
             x +
             "/" +
             localStorage.getItem("username")
@@ -204,7 +204,7 @@
     <script>
       const deleteEvent = async (x) => {
         const response = await fetch(
-          "http://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo/deleteEvent/" +
+          "https://event-organizer-server-group19.herokuapp.com/api/v1/EventInfo/deleteEvent/" +
             x +
             "/" +
             localStorage.getItem("username"),

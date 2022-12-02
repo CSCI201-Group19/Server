@@ -32,7 +32,7 @@
         };
         x1http.open(
           "GET",
-          "http://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/fetchProfile?userName=" +
+          "https://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/fetchProfile?userName=" +
             localStorage.getItem("username"),
           true
         );
@@ -55,7 +55,7 @@
         window.localStorage.setItem("password", password);
 
         const response = await fetch(
-          "http://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/signup",
+          "https://event-organizer-server-group19.herokuapp.com/api/v1/UserInfo/signup",
           {
             method: "POST",
             mode: "cors",
