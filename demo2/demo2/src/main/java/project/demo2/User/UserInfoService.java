@@ -59,9 +59,27 @@ public class UserInfoService {
 
 
     public List<EventInfo> UserEventsByNameCreated(String userName) {
-
-        //return eventRepository.findEventInfoByHostID(uiRepository.findUserInfoByName(userName).get().getId());
         return eventRepository.findEventInfoByHostName(uiRepository.findUserInfoByName(userName).get().getUserName());
+    }
 
+    public void UserUpdateEmail(String username, String email)
+    {
+        uiRepository.updateEmail(username, email);
+    }
+
+    public void UserUpdateUsername(String username_, String username)
+    {
+        long id = uiRepository.findIdByUsername(username);
+        uiRepository.updateUN(username_, id);
+    }
+
+    public void UserUpdateFirstName(String firstName, String username)
+    {
+        uiRepository.updateFN(username, firstName);
+    }
+
+    public void UserUpdateLastName(String lastName, String username)
+    {
+        uiRepository.updateLN(username, lastName);
     }
 }
