@@ -35,8 +35,11 @@ public class EventInfoConfig {
             EventInfo d = new EventInfo("Study Group", "Leavey", "study",
                     LocalDate.of(2022, Month.DECEMBER, 7),
                     LocalTime.of(20,0,0),5,3l,"Leon");
+            EventInfo e = new EventInfo("World Cup", "Qatar", "Chill",
+                    LocalDate.of(2022, Month.DECEMBER, 9),
+                    LocalTime.of(10,0,0),800,3l,"Leon");
 
-            repository.saveAll(List.of(studyGroup,presentation,coffeeChat,a,b,c,d));
+            repository.saveAll(List.of(studyGroup,presentation,coffeeChat,a,b,c,d,e));
         };
 
     }
