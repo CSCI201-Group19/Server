@@ -30,6 +30,7 @@
         const data = await res.json();
         return data;
       };
+
       async function f1() {
         let n = "";
 
@@ -49,10 +50,18 @@
         };
 
         var obj = await getEventByCreator();
-        if (obj.length > 4) {
-          document.getElementById("yy").style.overflowY = "scroll";
+        if (Object.keys(obj).length === 0){
+          console.log("ok");
+        }else{
+          if (obj.length > 4) {
+            document.getElementById("yy").style.overflowY = "scroll";
+          }
+          console.log(obj);
+
         }
-        console.log(obj);
+
+        var object=await getAllEvent();
+        console.log("ok2");
 
         for (let i = 0; i < obj.length; i++) {
           n = obj[i].name;
@@ -65,7 +74,7 @@
           );
           let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
 
-          var object = await getAllEvent();
+
 
           document.getElementById(
             "yy"
@@ -98,7 +107,7 @@
                 </div>
                 <div class="overlap-group-container">
                   <div class="overlap-group-1">
-                    <button onclick="f3(${object[i].id})" class="deleteButton" style="background-color: Transparent; border:none;
+                    <button onclick="f3(${obj[i].id})" class="deleteButton" style="background-color: Transparent; border:none;
                     font-size:25px; font-family:var(--font-family-candal)">
                     <div class="delete inter-semi-bold-white-13px">Delete</div>
                     </button>
@@ -111,10 +120,16 @@
               </div><br>`;
         }
 
-        if (object.length > 4) {
-          document.getElementById("ae").style.overflowY = "scroll";
-        }
 
+        if (Object.keys(object).length === 0){
+            console.log("ok");
+        }
+        else{
+          if (object.length > 4) {
+            document.getElementById("ae").style.overflowY = "scroll";
+          }
+
+        }
         for (let i = 0; i < object.length; i++) {
           // date and time formatting
           let fullDateString = object[i].date + "T" + object[i].time;

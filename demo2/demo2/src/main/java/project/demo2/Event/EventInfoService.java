@@ -102,6 +102,7 @@ public class EventInfoService {
             } else
                 throw new IllegalStateException("The user is not allowed to modify the event");
         } catch (IllegalStateException e){
+
             throw e;
         }
         return true;
