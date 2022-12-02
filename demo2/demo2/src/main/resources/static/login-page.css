@@ -8,9 +8,9 @@
   border: 1px none;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 1024px;
   padding: 208px 0;
-  width: 100vw;
+  width: 1440px;
 }
 
 .login-page .usc-event-organizer {
@@ -103,7 +103,7 @@
   height: 49px;
   margin-right: auto;
   margin-top: auto;
-  margin-left: auto;
+  marging-left: auto;
   width: 302px;
 }
 

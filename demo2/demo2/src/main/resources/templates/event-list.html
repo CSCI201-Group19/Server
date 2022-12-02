@@ -30,24 +30,6 @@
         const data = await res.json();
         return data;
       };
-      // const deleteEvent = async (x) => {
-      //   const response = await fetch(
-      //     "http://localhost:8080/api/v1/EventInfo/register/" +
-      //       x +
-      //       "/" +
-      //       localStorage.getItem("username")
-      //   );
-      //   const data = await response.text();
-      //   return data;
-      // };
-      // async function f3(x) {
-      //   const res = await deleteEvent(x);
-      //   if (res === "true") {
-      //     alert("Successfully deleted!");
-      //   } else {
-      //     alert("Couldn't delete it.");
-      //   }
-      // }
       async function f1() {
         let n = "";
 
@@ -83,6 +65,8 @@
           );
           let capacity = obj[i].numParticipants + "/" + obj[i].capacity;
 
+          var object = await getAllEvent();
+
           document.getElementById(
             "yy"
           ).innerHTML += `<div class="event-listing">
@@ -114,7 +98,10 @@
                 </div>
                 <div class="overlap-group-container">
                   <div class="overlap-group-1">
+                    <button onclick="f3(${object[i].id})" class="deleteButton" style="background-color: Transparent; border:none;
+                    font-size:25px; font-family:var(--font-family-candal)">
                     <div class="delete inter-semi-bold-white-13px">Delete</div>
+                    </button>
                   </div>
                   <div class="overlap-group-2 montserrat-semi-bold-black-24px">
                     <div class="capacity valign-text-middle">Capacity:</div>
@@ -124,7 +111,6 @@
               </div><br>`;
         }
 
-        var object = await getAllEvent();
         if (object.length > 4) {
           document.getElementById("ae").style.overflowY = "scroll";
         }
@@ -197,6 +183,28 @@
           alert("Registration successful!");
         } else {
           alert("Registration failed. You're already in it.");
+        }
+      }
+    </script>
+    <script>
+      const deleteEvent = async (x) => {
+        const response = await fetch(
+          "http://localhost:8080/api/v1/EventInfo/deleteEvent/" +
+            x +
+            "/" +
+            localStorage.getItem("username"),
+          { method: "DELETE" }
+        );
+        const data = await response.text();
+        return data;
+      };
+      async function f3(x) {
+        const res = await deleteEvent(x);
+        console.log("trying to delete " + x);
+        if (res === "true") {
+          alert("Successfully deleted!");
+        } else {
+          alert("Couldn't delete it.");
         }
       }
     </script>
