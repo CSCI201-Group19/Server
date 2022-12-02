@@ -64,6 +64,32 @@
         const userName = document.getElementById("username").value;
         const firstName = document.getElementById("firstName").value;
         const lastName = document.getElementById("lastName").value;
+        if(email===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+        else if(password===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+        else if(confirmpassword===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+        else if(firstName===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+        else if(lastName ===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+        else if(userName===""){
+          alert("Please fill in all empty fields.")
+          return;
+        }
+
+
 
         if (password !== confirmpassword) {
           alert("Password and Confirm Password does not match!");
