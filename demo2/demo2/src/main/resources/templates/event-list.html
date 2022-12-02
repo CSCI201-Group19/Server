@@ -30,20 +30,24 @@
         const data = await res.json();
         return data;
       };
-      const response = await fetch(
-
-      )
-
-
-      const deleteEvent = async () => {
-        let username;
-        try {
-          username = window.localStorage.getItem("username");
-        } catch (e) {
-          alert(e);
-        }
-      };
-
+      // const deleteEvent = async (x) => {
+      //   const response = await fetch(
+      //     "http://localhost:8080/api/v1/EventInfo/register/" +
+      //       x +
+      //       "/" +
+      //       localStorage.getItem("username")
+      //   );
+      //   const data = await response.text();
+      //   return data;
+      // };
+      // async function f3(x) {
+      //   const res = await deleteEvent(x);
+      //   if (res === "true") {
+      //     alert("Successfully deleted!");
+      //   } else {
+      //     alert("Couldn't delete it.");
+      //   }
+      // }
       async function f1() {
         let n = "";
 
@@ -107,13 +111,10 @@
                       ${obj[i].category}
                     </div>
                   </div>
-
-
-
                 </div>
                 <div class="overlap-group-container">
                   <div class="overlap-group-1">
-                    <div onclick="deleteEvent()" class="delete inter-semi-bold-white-13px">Delete</div>
+                    <div class="delete inter-semi-bold-white-13px">Delete</div>
                   </div>
                   <div class="overlap-group-2 montserrat-semi-bold-black-24px">
                     <div class="capacity valign-text-middle">Capacity:</div>
